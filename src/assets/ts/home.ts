@@ -26,4 +26,6 @@ const fetchCall = async function () {
     }
 }
 
-fetchCall()
+const visualizzaBrano = function (brano) {
+
+}
