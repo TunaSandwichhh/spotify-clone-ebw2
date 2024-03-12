@@ -1,10 +1,175 @@
 <!DOCTYPE html>
 <html lang="it">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
-  </head>
 
-  <body></body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <title>Home</title>
+</head>
+
+<body class="bg-success">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-4 left-section">
+        <div class="first-container-left-section">
+          <nav class="navbar navbar-expand navbar-light bg-dark text-white">
+            <ul class="navbar-nav d-flex flex-column ps-2">
+              <li><a href="#" class="text-decoration-none text-white"><i class="me-2">C</i>Home</a></li>
+              <li><a href="#" class="text-decoration-none text-white"><i class="me-2">S</i>Cerca</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="second-container-left-section mt-2">
+          <div class="header-second-container-left-section">
+            <nav class="navbar navbar-expand navbar-light text-white justify-content-between bg-dark p-2">
+              <ul class="navbar-nav">
+                <li><a href="#" class="text-decoration-none text-white"><i class="me-2">B</i>La tua libreria</a></li>
+              </ul>
+              <ul class="navbar-nav">
+                <li><a href="#" class="me-2 text-decoration-none text-white">C</a></li>
+                <li><a href="#" class="me-2 text-decoration-none text-white">M</a></li>
+              </ul>
+            </nav>
+            <nav class="navbar navbar-expand navbar-light bg-dark text-white">
+              <ul class="navbar-nav p-2">
+                <li><a href="#" class="me-2 text-decoration-none text-white btn bg-secondary rounded-pill">Playlist</a>
+                </li>
+                <li><a href="#" class="me-2 text-decoration-none text-white btn bg-secondary rounded-pill">Podcast e
+                    show</a></li>
+                <li><a href="#" class="me-2 text-decoration-none text-white btn bg-secondary rounded-pill">Album</a>
+                </li>
+                <li><a href="#" class="me-2 text-decoration-none text-white btn bg-secondary rounded-pill">Artisti</a>
+                </li>
+              </ul>
+            </nav>
+            <div class="body-second-container-left-section bg-dark">
+              <div class="navbar-body-second-container d-flex justify-content-between p-2">
+                <a href="#" class="text-decoration-none text-white"><i>S</i></a>
+                <a href="#" class="text-decoration-none text-white">Recenti<i class="ms-2">E</i></a>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+      <div class="col-8 right-section">
+        <div class="header-right-section bg-dark">
+          <nav class="navbar navbar-expand-lg navbar-light text-white">
+            <div class="container-fluid">
+              <div class="row w-100 d-flex justify-content-between">
+                <div class="col-6 d-flex align-items-center">
+                  <a href="#" class="text-decoration-none me-3 text-white">&lt;</a>
+                  <a href="#" class="text-decoration-none text-white">&gt;</a>
+                </div>
+                <div class="col-6 d-flex justify-content-end pe-0">
+                  <form class="d-flex align-items-center">
+                    <button class="btn bg-white rounded-pill me-2" type="submit">Esplora premium</button>
+                    <a href="#" class="text-decoration-none text-white"><i class="m-2">N</i></a>
+                    <a href="#" class="text-decoration-none text-white"><i class="m-2">A</i></a>
+                    <a href="#" class="text-decoration-none text-white"><i class="ms-2 my-2">P</i><a>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </nav>
+
+        </div>
+        <div class="body-right-section bg-dark text-white mt-2">
+          <div class="hero d-flex position-relative">
+            <div class="img-hero p-2 text-danger border border-1 border-danger">Immagine</div>
+            <div class="content-hero p-2">
+              <p>Playlist</p>
+              <h2 class="text-danger playlist-name display-4 fw-bold">Nome playlist</h2>
+              <p class="text-danger playlist-description">Descrizione playlist Descrizione playlist Descrizione playlist
+                Descrizione playlist Descrizione playlist Descrizione playlist</p>
+              <button class="btn bg-success rounded-pill me-2 px-4 py-2" type="submit">Play</button>
+              <button class="btn bg-transparent text-white border border-1 border-white px-4 py-2 rounded-pill"
+                type="submit">Segui</button>
+              <button class="btn bg-transparent text-white px-4 py-2 rounded-pill me-2" type="submit">...</button>
+              <button class="btn bg-transparent text-white px-4 py-2 rounded-pill me-2 position-absolute top-0 end-0"
+                type="submit">Sponsorizzato</button>
+            </div>
+
+          </div>
+          <div class="playlist-sub-hero-container row mt-4">
+            <div class="col-lg-3 col-6">
+              <div class="playlist-sub-hero-single d-flex text-danger me-4">
+                <div class="img-playlist-sub-hero border border-1 border-danger">Immagine</div>
+                <p class="ms-2">Nome playlist</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-6">
+              <div class="playlist-sub-hero-single d-flex text-danger">
+                <div class="img-playlist-sub-hero border border-1 border-danger">Immagine</div>
+                <p class="ms-2">Nome playlist</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-6">
+              <div class="playlist-sub-hero-single d-flex text-danger">
+                <div class="img-playlist-sub-hero border border-1 border-danger">Immagine</div>
+                <p class="ms-2">Nome playlist</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-6">
+              <div class="playlist-sub-hero-single d-flex text-danger">
+                <div class="img-playlist-sub-hero border border-1 border-danger">Immagine</div>
+                <p class="ms-2">Nome playlist</p>
+              </div>
+            </div>
+
+          </div>
+          <div class="playlist-sub-hero-container row mt-4">
+            <div class="col-lg-3 col-6">
+              <div class="playlist-sub-hero-single d-flex text-danger me-4">
+                <div class="img-playlist-sub-hero border border-1 border-danger">Immagine</div>
+                <p class="ms-2">Nome playlist</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-6">
+              <div class="playlist-sub-hero-single d-flex text-danger">
+                <div class="img-playlist-sub-hero border border-1 border-danger">Immagine</div>
+                <p class="ms-2">Nome playlist</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-6">
+              <div class="playlist-sub-hero-single d-flex text-danger">
+                <div class="img-playlist-sub-hero border border-1 border-danger">Immagine</div>
+                <p class="ms-2">Nome playlist</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-6">
+              <div class="playlist-sub-hero-single d-flex text-danger">
+                <div class="img-playlist-sub-hero border border-1 border-danger">Immagine</div>
+                <p class="ms-2">Nome playlist</p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="first-row-big-playlists">
+            <div class="big-playlist-single-container text-danger">
+              <div class="border border-1 border-danger">Immagine</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="row player-section bg-dark text-white position-fixed w-100 bottom-0 text-center">
+      <div class="col-3">
+        <div class="dettagli-brano">Roba in riproduzione</div>
+      </div>
+      <div class="col">Player Line</div>
+      <div class="col-3">Dettagli riproduzione</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+</body>
+
 </html>
