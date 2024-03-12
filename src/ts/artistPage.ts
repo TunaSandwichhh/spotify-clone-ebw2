@@ -19,7 +19,10 @@ const getArtistOverview = async (
       `https://spotify81.p.rapidapi.com/artist_overview?id=${id}`,
       options
     );
+    console.log(response.ok);
+
     const data = await response.json();
+    console.log(data);
 
     return data.data.artist as ArtistOverview;
   } catch (e) {
@@ -27,3 +30,28 @@ const getArtistOverview = async (
     return null;
   }
 };
+
+const renderHeader = (artistOvw: ArtistOverview) => {
+  const headerDiv = document.getElementById("header") as HTMLElement | null;
+  if (headerDiv) {
+    headerDiv.innerHTML = `
+    <img src="${artistOvw.visuals.headerImage.sources[0].url}"/>
+    <h1>${artistOvw.profile.name}</h1>
+    <p>Ascoltatori mensili: ${artistOvw.stats.monthlyListeners}</p>
+    `;
+  }
+};
+
+const renderArtistTracks = (artistOvw: ArtistOverview) => {};
+
+const handleLoad = async () => {
+  if (artistId) {
+    console.log(artistId);
+    const artistOvw = await getArtistOverview(artistId);
+    if (artistOvw) {
+      renderHeader(artistOvw);
+    }
+  }
+};
+
+document.addEventListener("DOMContentLoaded", handleLoad);
