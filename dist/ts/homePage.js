@@ -50,7 +50,7 @@ const renderPlaylist = (playlist) => {
     if (playlistDiv) {
         const playlistCard = document.createElement("div");
         playlistCard.innerHTML = `
-        <a href="../html/playlist.html?id=${playlist.id}">
+        <a href="../../playlist.html?id=${playlist.id}">
             <img src="${playlist.images[0].url}"/>
         </a>
         <h1>${playlist.name}</h1>

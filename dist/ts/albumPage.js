@@ -30,7 +30,7 @@ const renderTrack = (track) => {
     const container = document.getElementById("container");
     if (container) {
         const trackTitle = document.createElement("div");
-        const artistLinks = track.artists.map((artist) => `<a href="../html/artists.html?id=${artist.id}">${artist.name}</a>`);
+        const artistLinks = track.artists.map((artist) => `<a href="../../artists.html?id=${artist.id}">${artist.name}</a>`);
         trackTitle.innerHTML = `
     <h1>${track.name}</h1>
     <h2>${artistLinks}</h2>

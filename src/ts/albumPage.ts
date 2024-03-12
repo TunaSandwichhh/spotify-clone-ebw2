@@ -38,7 +38,7 @@ const renderTrack = (track: Track): void => {
 
     const artistLinks = track.artists.map(
       (artist) =>
-        `<a href="../html/artists.html?id=${artist.id}">${artist.name}</a>`
+        `<a href="../../artists.html?id=${artist.id}">${artist.name}</a>`
     );
 
     trackTitle.innerHTML = `

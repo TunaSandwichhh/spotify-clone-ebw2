@@ -35,7 +35,7 @@ const renderPlaylistTrack = (track) => {
     const playlistTracks = document.getElementById("playlistTracks");
     if (playlistTracks) {
         const trackDiv = document.createElement("div");
-        const artistLinks = track.artists.map((artist) => `<a href="../html/artists.html?id=${artist.id}">${artist.name}</a>`);
+        const artistLinks = track.artists.map((artist) => `<a href="../../artists.html?id=${artist.id}">${artist.name}</a>`);
         trackDiv.innerHTML = `
  <h1>${track.name}</h1>
  <h2>${artistLinks}</h2>
