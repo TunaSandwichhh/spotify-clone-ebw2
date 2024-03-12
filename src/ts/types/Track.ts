@@ -10,7 +10,9 @@ export interface Track {
   disc_number: number;
   duration_ms: number;
   explicit: boolean;
-  external_urls?: {};
+  external_urls?: {
+    spotify: string;
+  };
   href: string;
   id: string;
   is_local: boolean;

@@ -29,6 +29,17 @@ const getArtistOverview = (id) => __awaiter(void 0, void 0, void 0, function* ()
         return null;
     }
 });
+const getTrackDetails = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const response = yield fetch(`https://spotify81.p.rapidapi.com/tracks?ids=${id}`, options);
+        const trackDetails = yield response.json();
+        return trackDetails.tracks[0];
+    }
+    catch (e) {
+        console.log(e);
+        return null;
+    }
+});
 const renderHeader = (artistOvw) => {
     const headerDiv = document.getElementById("header");
     if (headerDiv) {
@@ -41,6 +52,8 @@ const renderHeader = (artistOvw) => {
 };
 const renderPopularTracks = (artistOvw) => {
     const popularTracksDiv = document.getElementById("popularTracks");
+    const audioElement = document.getElementById("audioElement");
+    const currentTrackImage = document.getElementById("currentTrackImage");
     if (popularTracksDiv) {
         artistOvw.discography.topTracks.items.slice(0, 5).forEach((trackItem) => {
             const trackDiv = document.createElement("div");
@@ -48,6 +61,16 @@ const renderPopularTracks = (artistOvw) => {
         <img src="${trackItem.track.album.coverArt.sources[0].url}"/>
         <p>${trackItem.track.name}</p>
       `;
+            trackDiv.addEventListener("click", () => __awaiter(void 0, void 0, void 0, function* () {
+                if (audioElement && currentTrackImage) {
+                    currentTrackImage.src = trackItem.track.album.coverArt.sources[0].url;
+                    const trackDetails = yield getTrackDetails(trackItem.track.id);
+                    if (trackDetails) {
+                        audioElement.src = trackDetails.preview_url;
+                        audioElement.play();
+                    }
+                }
+            }));
             popularTracksDiv.appendChild(trackDiv);
         });
     }

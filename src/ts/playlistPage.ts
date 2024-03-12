@@ -65,6 +65,7 @@ const renderPlaylistTrack = (track: Track) => {
         `<a href="../../artists.html?id=${artist.id}">${artist.name}</a>`
     );
     trackDiv.innerHTML = `
+ <img src="${track.album.images[0].url}"/>  
  <h1>${track.name}</h1>
  <h2>${artistLinks}</h2>
  <a href="../../album.html?id=${track.album.id}">

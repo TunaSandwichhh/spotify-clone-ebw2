@@ -1,4 +1,5 @@
 import { ArtistOverview } from "./types/ArtistOverview";
+import { Track } from "./types/Track";
 
 const urlParams = new URLSearchParams(window.location.search);
 const artistId = urlParams.get("id");
@@ -31,6 +32,22 @@ const getArtistOverview = async (
   }
 };
 
+const getTrackDetails = async (id: string): Promise<Track | null> => {
+  try {
+    const response = await fetch(
+      `https://spotify81.p.rapidapi.com/tracks?ids=${id}`,
+      options
+    );
+
+    const trackDetails = await response.json();
+
+    return trackDetails.tracks[0] as Track;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
+};
+
 const renderHeader = (artistOvw: ArtistOverview) => {
   const headerDiv = document.getElementById("header") as HTMLElement | null;
   if (headerDiv) {
@@ -43,7 +60,15 @@ const renderHeader = (artistOvw: ArtistOverview) => {
 };
 
 const renderPopularTracks = (artistOvw: ArtistOverview) => {
-  const popularTracksDiv = document.getElementById("popularTracks");
+  const popularTracksDiv = document.getElementById(
+    "popularTracks"
+  ) as HTMLElement | null;
+  const audioElement = document.getElementById(
+    "audioElement"
+  ) as HTMLAudioElement | null;
+  const currentTrackImage = document.getElementById(
+    "currentTrackImage"
+  ) as HTMLImageElement | null;
 
   if (popularTracksDiv) {
     artistOvw.discography.topTracks.items.slice(0, 5).forEach((trackItem) => {
@@ -53,6 +78,18 @@ const renderPopularTracks = (artistOvw: ArtistOverview) => {
         <img src="${trackItem.track.album.coverArt.sources[0].url}"/>
         <p>${trackItem.track.name}</p>
       `;
+
+      trackDiv.addEventListener("click", async () => {
+        if (audioElement && currentTrackImage) {
+          currentTrackImage.src = trackItem.track.album.coverArt.sources[0].url;
+
+          const trackDetails = await getTrackDetails(trackItem.track.id);
+          if (trackDetails) {
+            audioElement.src = trackDetails.preview_url;
+            audioElement.play();
+          }
+        }
+      });
 
       popularTracksDiv.appendChild(trackDiv);
     });
