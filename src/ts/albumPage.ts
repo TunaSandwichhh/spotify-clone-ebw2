@@ -1,9 +1,8 @@
 import { Track } from "./types/Track";
 
-console.log("ciao da album page");
-
 const url =
   "https://spotify81.p.rapidapi.com/albums?ids=3IBcauSj5M2A6lTeffJzdv";
+
 const options = {
   method: "GET",
   headers: {
@@ -12,34 +11,52 @@ const options = {
   },
 };
 
-const fetchCall = async (): Promise<void> => {
+/**
+ * Funzione asincrona che esegue una fetch all'endpoint /albums/:id e ne ritorna l'array di brani (oggetti Track) associati
+ */
+const getTracks = async (): Promise<Track[]> => {
   try {
     const response = await fetch(url, options);
     const data = await response.json();
 
-    const tracks = data.albums[0].tracks.items;
-
-    for (let track of tracks) {
-      //console.log(track.name);
-      renderTrack(track);
-    }
+    return data.albums[0].tracks.items as Track[];
   } catch (e) {
     console.log(e);
+    return [];
   }
 };
 
+/**
+ * Funzione che riceve un oggetto Track come parametro e lo renderizza a schermo dinamicamente
+ * @param track
+ */
 const renderTrack = (track: Track): void => {
   const container = document.getElementById("container") as HTMLElement | null;
+
   if (container) {
     const trackTitle = document.createElement("div");
+
+    const artistLinks = track.artists.map(
+      (artist) =>
+        `<a href="../html/artists.html?id=${artist.id}">${artist.name}</a>`
+    );
+
     trackTitle.innerHTML = `
-    <h1>${track.name}</h1>`;
+    <h1>${track.name}</h1>
+    <h2>${artistLinks}</h2>
+    `;
     container.appendChild(trackTitle);
   }
 };
 
-const handleLoad = () => {
-  fetchCall();
+/**
+ * Callback per gestire l'evento di load della pagina
+ */
+const handleLoad = async () => {
+  const tracks = await getTracks();
+  tracks.forEach((track) => {
+    renderTrack(track);
+  });
 };
 
 document.addEventListener("DOMContentLoaded", handleLoad);

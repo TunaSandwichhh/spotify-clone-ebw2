@@ -7,7 +7,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-console.log("ciao da album page");
 const url = "https://spotify81.p.rapidapi.com/albums?ids=3IBcauSj5M2A6lTeffJzdv";
 const options = {
     method: "GET",
@@ -16,30 +15,34 @@ const options = {
         "X-RapidAPI-Host": "spotify81.p.rapidapi.com",
     },
 };
-const fetchCall = () => __awaiter(void 0, void 0, void 0, function* () {
+const getTracks = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const response = yield fetch(url, options);
         const data = yield response.json();
-        const tracks = data.albums[0].tracks.items;
-        for (let track of tracks) {
-            renderTrack(track);
-        }
+        return data.albums[0].tracks.items;
     }
     catch (e) {
         console.log(e);
+        return [];
     }
 });
 const renderTrack = (track) => {
     const container = document.getElementById("container");
     if (container) {
         const trackTitle = document.createElement("div");
+        const artistLinks = track.artists.map((artist) => `<a href="../html/artists.html?id=${artist.id}">${artist.name}</a>`);
         trackTitle.innerHTML = `
-    <h1>${track.name}</h1>`;
+    <h1>${track.name}</h1>
+    <h2>${artistLinks}</h2>
+    `;
         container.appendChild(trackTitle);
     }
 };
-const handleLoad = () => {
-    fetchCall();
-};
+const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
+    const tracks = yield getTracks();
+    tracks.forEach((track) => {
+        renderTrack(track);
+    });
+});
 document.addEventListener("DOMContentLoaded", handleLoad);
 export {};
