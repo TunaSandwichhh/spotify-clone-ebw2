@@ -33,7 +33,16 @@ export interface Playlist {
   snapshot_id: string;
   tracks: {
     href: string;
-    items: Track[];
+    items: {
+      added_at: string;
+      added_by: any;
+      is_local: boolean;
+      primary_color: any;
+      track: Track;
+      video_thumbnail: {
+        url: string;
+      };
+    }[];
     limit: number;
     next: any;
     offset: number;

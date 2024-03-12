@@ -7,7 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const url = `https://spotify81.p.rapidapi.com/playlist?id=37i9dQZF1DX4Wsb4d7NKfP`;
+const urlParams = new URLSearchParams(window.location.search);
+const playlistId = urlParams.get("id");
 const options = {
     method: "GET",
     headers: {
@@ -15,11 +16,15 @@ const options = {
         "X-RapidAPI-Host": "spotify81.p.rapidapi.com",
     },
 };
-const getPlaylistTracks = () => __awaiter(void 0, void 0, void 0, function* () {
+const getPlaylistTracks = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const playlistTracks = [];
     try {
-        const response = yield fetch(url, options);
-        const data = yield response.json();
-        return data.tracks.items;
+        const response = yield fetch(`https://spotify81.p.rapidapi.com/playlist?id=${id}`, options);
+        const data = (yield response.json());
+        for (let trackData of data.tracks.items) {
+            playlistTracks.push(trackData.track);
+        }
+        return playlistTracks;
     }
     catch (e) {
         console.log(e);
@@ -27,9 +32,9 @@ const getPlaylistTracks = () => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 const renderPlaylistTrack = (track) => {
-    const playlistTracks = document.getElementById('playlistTracks');
+    const playlistTracks = document.getElementById("playlistTracks");
     if (playlistTracks) {
-        const trackDiv = document.createElement('div');
+        const trackDiv = document.createElement("div");
         const artistLinks = track.artists.map((artist) => `<a href="../html/artists.html?id=${artist.id}">${artist.name}</a>`);
         trackDiv.innerHTML = `
  <h1>${track.name}</h1>
@@ -39,10 +44,12 @@ const renderPlaylistTrack = (track) => {
     }
 };
 const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
-    const tracks = yield getPlaylistTracks();
-    for (let track of tracks) {
-        renderPlaylistTrack(track);
+    if (playlistId) {
+        const tracks = yield getPlaylistTracks(playlistId);
+        for (let track of tracks) {
+            renderPlaylistTrack(track);
+        }
     }
 });
-document.addEventListener('DOMContentLoaded', handleLoad);
+document.addEventListener("DOMContentLoaded", handleLoad);
 export {};
