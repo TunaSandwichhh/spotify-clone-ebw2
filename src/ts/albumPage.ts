@@ -1,7 +1,7 @@
 import { Track } from "./types/Track";
 
-const url =
-  "https://spotify81.p.rapidapi.com/albums?ids=3IBcauSj5M2A6lTeffJzdv";
+const urlParams = new URLSearchParams(window.location.search);
+const albumId = urlParams.get("id");
 
 const options = {
   method: "GET",
@@ -14,9 +14,12 @@ const options = {
 /**
  * Funzione asincrona che esegue una fetch all'endpoint /albums/:id e ne ritorna l'array di brani (oggetti Track) associati
  */
-const getTracks = async (): Promise<Track[]> => {
+const getTracks = async (id: string): Promise<Track[]> => {
   try {
-    const response = await fetch(url, options);
+    const response = await fetch(
+      `https://spotify81.p.rapidapi.com/albums?ids=${id}`,
+      options
+    );
     const data = await response.json();
 
     return data.albums[0].tracks.items as Track[];
@@ -53,10 +56,12 @@ const renderTrack = (track: Track): void => {
  * Callback per gestire l'evento di load della pagina
  */
 const handleLoad = async () => {
-  const tracks = await getTracks();
-  tracks.forEach((track) => {
-    renderTrack(track);
-  });
+  if (albumId) {
+    const tracks = await getTracks(albumId);
+    tracks.forEach((track) => {
+      renderTrack(track);
+    });
+  }
 };
 
 document.addEventListener("DOMContentLoaded", handleLoad);

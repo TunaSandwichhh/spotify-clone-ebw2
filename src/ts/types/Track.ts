@@ -1,3 +1,4 @@
+import { Album } from "./Album";
 import { Artist } from "./Artist";
 
 /**
@@ -21,7 +22,7 @@ export interface Track {
   episode?: boolean;
   track?: boolean;
   popularity?: number;
-  album?: any[];
+  album: Album;
   external_ids?: {
     isrc: string;
   };

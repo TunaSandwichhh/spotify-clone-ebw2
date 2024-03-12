@@ -7,7 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const url = "https://spotify81.p.rapidapi.com/albums?ids=3IBcauSj5M2A6lTeffJzdv";
+const urlParams = new URLSearchParams(window.location.search);
+const albumId = urlParams.get("id");
 const options = {
     method: "GET",
     headers: {
@@ -15,9 +16,9 @@ const options = {
         "X-RapidAPI-Host": "spotify81.p.rapidapi.com",
     },
 };
-const getTracks = () => __awaiter(void 0, void 0, void 0, function* () {
+const getTracks = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const response = yield fetch(url, options);
+        const response = yield fetch(`https://spotify81.p.rapidapi.com/albums?ids=${id}`, options);
         const data = yield response.json();
         return data.albums[0].tracks.items;
     }
@@ -39,10 +40,12 @@ const renderTrack = (track) => {
     }
 };
 const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
-    const tracks = yield getTracks();
-    tracks.forEach((track) => {
-        renderTrack(track);
-    });
+    if (albumId) {
+        const tracks = yield getTracks(albumId);
+        tracks.forEach((track) => {
+            renderTrack(track);
+        });
+    }
 });
 document.addEventListener("DOMContentLoaded", handleLoad);
 export {};
