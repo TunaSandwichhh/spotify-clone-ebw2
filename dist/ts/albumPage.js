@@ -28,7 +28,6 @@ const getAlbum = (id) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 const renderTrack = (track, albumImgUrl) => {
-    console.log(track);
     const container = document.getElementById("container");
     const audioElement = document.getElementById("audioElement");
     const currentTrackImage = document.getElementById("currentTrackImage");
@@ -38,7 +37,6 @@ const renderTrack = (track, albumImgUrl) => {
         trackDiv.innerHTML = `
     <img src="${albumImgUrl}" />
     <h1>${track.name}</h1>
-    <h1>${track.preview_url}</h1>
     <h2>${artistLinks}</h2>
     `;
         trackDiv.addEventListener("click", () => {
