@@ -12,24 +12,6 @@ const options = {
   },
 };
 
-/**
- * Funzione asincrona che esegue una fetch all'endpoint /albums/:id e ne ritorna l'array di brani (oggetti Track) associati
- */
-// const getTracks = async (id: string): Promise<Track[]> => {
-//   try {
-//     const response = await fetch(
-//       `https://spotify81.p.rapidapi.com/albums?ids=${id}`,
-//       options
-//     );
-//     const data = await response.json();
-
-//     return data.albums[0].tracks.items as Track[];
-//   } catch (e) {
-//     console.log(e);
-//     return [];
-//   }
-// };
-
 const getAlbum = async (id: string): Promise<Album | null> => {
   try {
     const response = await fetch(
