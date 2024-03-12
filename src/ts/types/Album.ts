@@ -23,4 +23,16 @@ export interface Album {
   };
   type: string;
   uri: string;
+  copyrights: {
+    text: string;
+    type: string;
+  };
+  external_ids: {
+    upc: string;
+  };
+  external_urls: {
+    spotify: string;
+  };
+  genres: any[];
+  href: string;
 }

@@ -49,6 +49,13 @@ const renderPlaylistTrack = (track: Track) => {
   const playlistTracks = document.getElementById(
     "playlistTracks"
   ) as HTMLElement | null;
+  const audioElement = document.getElementById(
+    "audioElement"
+  ) as HTMLAudioElement | null;
+  const currentTrackImage = document.getElementById(
+    "currentTrackImage"
+  ) as HTMLImageElement | null;
+
   if (playlistTracks) {
     console.log("Album: ", track.album);
 
@@ -58,6 +65,7 @@ const renderPlaylistTrack = (track: Track) => {
         `<a href="../../artists.html?id=${artist.id}">${artist.name}</a>`
     );
     trackDiv.innerHTML = `
+ <img src="${track.album.images[0].url}"/>  
  <h1>${track.name}</h1>
  <h2>${artistLinks}</h2>
  <a href="../../album.html?id=${track.album.id}">
@@ -65,6 +73,15 @@ const renderPlaylistTrack = (track: Track) => {
  </a>
  <p>${track.duration_ms}</p>
  `;
+
+    trackDiv.addEventListener("click", () => {
+      if (audioElement && currentTrackImage) {
+        currentTrackImage.src = track.album.images[0].url;
+        audioElement.src = track.preview_url;
+        audioElement.play();
+      }
+    });
+
     playlistTracks.appendChild(trackDiv);
   }
 };

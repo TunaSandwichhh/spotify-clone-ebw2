@@ -2,7 +2,7 @@ import { Playlist } from "./types/Playlist";
 import { UserProfile } from "./types/UserProfile";
 
 const url =
-  "https://spotify81.p.rapidapi.com/user_profile?id=nocopyrightsounds&playlistLimit=1&artistLimit=10";
+  "https://spotify81.p.rapidapi.com/user_profile?id=nocopyrightsounds&playlistLimit=15&artistLimit=10";
 
 const options = {
   method: "GET",
@@ -49,10 +49,8 @@ const getPlaylist = async (): Promise<Playlist[]> => {
   }
 };
 
-const renderPlaylist = (playlist: Playlist) => {
-  const playlistDiv = document.getElementById(
-    "playlistDiv"
-  ) as HTMLElement | null;
+const renderPlaylist = (playlist: Playlist, divId: string) => {
+  const playlistDiv = document.getElementById(divId) as HTMLElement | null;
 
   if (playlistDiv) {
     const playlistCard = document.createElement("div");
@@ -70,8 +68,14 @@ const handleLoad = async () => {
   await getPlaylistIds();
   const playlists = await getPlaylist();
 
-  playlists.forEach((playlist) => {
-    renderPlaylist(playlist);
+  playlists.forEach((playlist, index) => {
+    if (index < 5) {
+      renderPlaylist(playlist, "playlistDiv");
+    } else if (index < 10) {
+      renderPlaylist(playlist, "playlist2");
+    } else {
+      renderPlaylist(playlist, "playlist3");
+    }
   });
 };
 

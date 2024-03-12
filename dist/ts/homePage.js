@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const url = "https://spotify81.p.rapidapi.com/user_profile?id=nocopyrightsounds&playlistLimit=1&artistLimit=10";
+const url = "https://spotify81.p.rapidapi.com/user_profile?id=nocopyrightsounds&playlistLimit=15&artistLimit=10";
 const options = {
     method: "GET",
     headers: {
@@ -45,8 +45,8 @@ const getPlaylist = () => __awaiter(void 0, void 0, void 0, function* () {
         return [];
     }
 });
-const renderPlaylist = (playlist) => {
-    const playlistDiv = document.getElementById("playlistDiv");
+const renderPlaylist = (playlist, divId) => {
+    const playlistDiv = document.getElementById(divId);
     if (playlistDiv) {
         const playlistCard = document.createElement("div");
         playlistCard.innerHTML = `
@@ -61,8 +61,16 @@ const renderPlaylist = (playlist) => {
 const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
     yield getPlaylistIds();
     const playlists = yield getPlaylist();
-    playlists.forEach((playlist) => {
-        renderPlaylist(playlist);
+    playlists.forEach((playlist, index) => {
+        if (index < 5) {
+            renderPlaylist(playlist, "playlistDiv");
+        }
+        else if (index < 10) {
+            renderPlaylist(playlist, "playlist2");
+        }
+        else {
+            renderPlaylist(playlist, "playlist3");
+        }
     });
 });
 document.addEventListener("DOMContentLoaded", handleLoad);
