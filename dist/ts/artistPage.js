@@ -39,13 +39,28 @@ const renderHeader = (artistOvw) => {
     `;
     }
 };
-const renderArtistTracks = (artistOvw) => { };
+const renderPopularTracks = (artistOvw) => {
+    const popularTracksDiv = document.getElementById("popularTracks");
+    if (popularTracksDiv) {
+        artistOvw.discography.topTracks.items.slice(0, 5).forEach((trackItem) => {
+            const trackDiv = document.createElement("div");
+            trackDiv.innerHTML = `
+        <img src="${trackItem.track.album.coverArt.sources[0].url}"/>
+        <p>${trackItem.track.name}</p>
+      `;
+            popularTracksDiv.appendChild(trackDiv);
+        });
+    }
+};
+const renderDiscography = (artistOvw) => { };
+const renderRelatedArtists = (artistOvw) => { };
 const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
     if (artistId) {
         console.log(artistId);
         const artistOvw = yield getArtistOverview(artistId);
         if (artistOvw) {
             renderHeader(artistOvw);
+            renderPopularTracks(artistOvw);
         }
     }
 });

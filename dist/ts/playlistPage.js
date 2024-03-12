@@ -43,6 +43,8 @@ const getPlaylist = (id) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const renderPlaylistTrack = (track) => {
     const playlistTracks = document.getElementById("playlistTracks");
+    const audioElement = document.getElementById("audioElement");
+    const currentTrackImage = document.getElementById("currentTrackImage");
     if (playlistTracks) {
         console.log("Album: ", track.album);
         const trackDiv = document.createElement("div");
@@ -55,6 +57,13 @@ const renderPlaylistTrack = (track) => {
  </a>
  <p>${track.duration_ms}</p>
  `;
+        trackDiv.addEventListener("click", () => {
+            if (audioElement && currentTrackImage) {
+                currentTrackImage.src = track.album.images[0].url;
+                audioElement.src = track.preview_url;
+                audioElement.play();
+            }
+        });
         playlistTracks.appendChild(trackDiv);
     }
 };
