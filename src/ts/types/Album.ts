@@ -1,4 +1,5 @@
 import { Artist } from "./Artist";
+import { Track } from "./Track";
 
 export interface Album {
   album_type: string;
@@ -14,16 +15,12 @@ export interface Album {
   name: string;
   popularity: number;
   release_date: string;
+  release_date_precision: string;
+  total_tracks: number;
+  tracks: {
+    href: string;
+    items: Track[];
+  };
+  type: string;
+  uri: string;
 }
-
-album_type: "album";
-artists: available_markets: copyrights: external_ids: external_urls: genres: href: "https://api.spotify.com/v1/albums/3IBcauSj5M2A6lTeffJzdv";
-id: "3IBcauSj5M2A6lTeffJzdv";
-images: label: "M.O.B. Entertainment";
-name: "Kan";
-popularity: 73;
-release_date: "2021-03-19";
-release_date_precision: "day";
-total_tracks: 10;
-tracks: type: "album";
-uri: "spotify:album:3IBcauSj5M2A6lTeffJzdv";

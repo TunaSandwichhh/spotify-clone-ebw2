@@ -1,3 +1,4 @@
+import { Playlist } from "./types/Playlist";
 import { UserProfile } from "./types/UserProfile";
 
 const url =
@@ -28,15 +29,16 @@ const getPlaylistIds = async (): Promise<void> => {
   }
 };
 
-const getPlaylist = async (): Promise<any[]> => {
+const getPlaylist = async (): Promise<Playlist[]> => {
   try {
-    const playlists = [];
+    const playlists: Playlist[] = [];
 
     for (let id of playlistIds) {
       const response = await fetch(
-        `https://spotify81.p.rapidapi.com/playlist?id=${id}`
+        `https://spotify81.p.rapidapi.com/playlist?id=${id}`,
+        options
       );
-      const data = await response.json();
+      const data = (await response.json()) as Playlist;
       playlists.push(data);
     }
 
@@ -46,3 +48,31 @@ const getPlaylist = async (): Promise<any[]> => {
     return [];
   }
 };
+
+const renderPlaylist = (playlist: Playlist) => {
+  const playlistDiv = document.getElementById(
+    "playlistDiv"
+  ) as HTMLElement | null;
+
+  if (playlistDiv) {
+    const playlistCard = document.createElement("div");
+    playlistCard.innerHTML = `
+        <a href="../html/playlist.html?id=${playlist.id}">
+            <img src="${playlist.images[0].url}"/>
+        </a>
+        <h1>${playlist.name}</h1>
+    `;
+    playlistDiv.appendChild(playlistCard);
+  }
+};
+
+const handleLoad = async () => {
+  await getPlaylistIds();
+  const playlists = await getPlaylist();
+
+  playlists.forEach((playlist) => {
+    renderPlaylist(playlist);
+  });
+};
+
+document.addEventListener("DOMContentLoaded", handleLoad);
