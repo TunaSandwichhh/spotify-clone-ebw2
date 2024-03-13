@@ -65,12 +65,12 @@ body {
 
 /*Dynamic content temporary style*/
 
-.dynamic-content {
+/* .dynamic-content {
     color: red;
 }
 a.img-side-single-playlist.dynamic-content, a#img-playlist-hero, a.img-playlist-sub-hero, a.img-playlist-medium, a.img-preview-player {
     border: 1px solid red;
-}
+} */
 
 #right-section #header-right-section form {
     position: relative;

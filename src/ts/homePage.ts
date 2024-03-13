@@ -109,6 +109,7 @@ const renderPlaylist = (playlist: Playlist, divId: string) => {
 const handleLoad = async () => {
   await getPlaylistIds();
   const playlists = await getPlaylist();
+
   renderPlaylistTitle(playlists[0]);
 
   playlists.forEach((playlist, index) => {
