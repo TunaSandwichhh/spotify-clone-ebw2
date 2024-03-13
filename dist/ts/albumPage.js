@@ -7,8 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-console.log("ciao da album page");
-const url = "https://spotify81.p.rapidapi.com/albums?ids=3IBcauSj5M2A6lTeffJzdv";
+const urlParams = new URLSearchParams(window.location.search);
+const albumId = urlParams.get("id");
 const options = {
     method: "GET",
     headers: {
@@ -16,30 +16,46 @@ const options = {
         "X-RapidAPI-Host": "spotify81.p.rapidapi.com",
     },
 };
-const fetchCall = () => __awaiter(void 0, void 0, void 0, function* () {
+const getAlbum = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const response = yield fetch(url, options);
+        const response = yield fetch(`https://spotify81.p.rapidapi.com/albums?ids=${id}`, options);
         const data = yield response.json();
-        const tracks = data.albums[0].tracks.items;
-        for (let track of tracks) {
-            renderTrack(track);
-        }
+        return data.albums[0];
     }
     catch (e) {
         console.log(e);
+        return null;
     }
 });
-const renderTrack = (track) => {
+const renderTrack = (track, albumImgUrl) => {
     const container = document.getElementById("container");
+    const audioElement = document.getElementById("audioElement");
+    const currentTrackImage = document.getElementById("currentTrackImage");
     if (container) {
-        const trackTitle = document.createElement("div");
-        trackTitle.innerHTML = `
-    <h1>${track.name}</h1>`;
-        container.appendChild(trackTitle);
+        const trackDiv = document.createElement("div");
+        const artistLinks = track.artists.map((artist) => `<a href="../../artists.html?id=${artist.id}">${artist.name}</a>`);
+        trackDiv.innerHTML = `
+    <img src="${albumImgUrl}" />
+    <h1>${track.name}</h1>
+    <h2>${artistLinks}</h2>
+    `;
+        trackDiv.addEventListener("click", () => {
+            if (audioElement && currentTrackImage) {
+                currentTrackImage.src = albumImgUrl;
+                audioElement.src = track.preview_url;
+                audioElement.play();
+            }
+        });
+        container.appendChild(trackDiv);
     }
 };
-const handleLoad = () => {
-    fetchCall();
-};
+const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
+    if (albumId) {
+        const album = yield getAlbum(albumId);
+        album === null || album === void 0 ? void 0 : album.tracks.items.forEach((track) => {
+            renderTrack(track, album.images[0].url);
+        });
+    }
+});
 document.addEventListener("DOMContentLoaded", handleLoad);
 export {};
