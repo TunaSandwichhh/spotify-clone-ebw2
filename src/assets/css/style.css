@@ -1,10 +1,14 @@
+body {
+    background: black;
+}
+
 #right-section {
     height: 100vh;
     overflow-y: scroll;
 }
 
 #side-playlist-list {
-    height: 58vh;
+    height: 39.5vh;
     overflow-y: scroll;
 }
 
@@ -29,6 +33,16 @@
     height: 120px;
 }
 
+.img-side-single-playlist {
+    width: 70px;
+    height: 70px;
+}
+
+.img-preview-player {
+    width: 70px;
+    height: 70px;
+}
+
 .nav-librerie a {
     font-size: 0.8em;
 }
@@ -47,4 +61,18 @@
 
 .left-section {
     min-width: 280px;
+}
+
+/*Dynamic content temporary style*/
+
+.dynamic-content {
+    color: red;
+}
+a.img-side-single-playlist.dynamic-content, a#img-playlist-hero, a.img-playlist-sub-hero, a.img-playlist-medium, a.img-preview-player {
+    border: 1px solid red;
+}
+
+#right-section #header-right-section form {
+    position: relative;
+    right: -14px;
 }
