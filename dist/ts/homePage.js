@@ -11,7 +11,7 @@ const url = "https://spotify81.p.rapidapi.com/user_profile?id=nocopyrightsounds&
 const options = {
     method: "GET",
     headers: {
-        "X-RapidAPI-Key": "5eba36709fmsh46db4e8e33040c1p10a999jsnc724d1df5f73",
+        "X-RapidAPI-Key": "1c97dd9171mshce60f6ca494e49ep1675cbjsn61e55e9dd7f6",
         "X-RapidAPI-Host": "spotify81.p.rapidapi.com",
     },
 };
@@ -45,15 +45,39 @@ const getPlaylist = () => __awaiter(void 0, void 0, void 0, function* () {
         return [];
     }
 });
+const renderPlaylistTitle = (playlist) => {
+    const playBtn = document.getElementById("playBtn");
+    playBtn === null || playBtn === void 0 ? void 0 : playBtn.addEventListener("click", () => {
+        window.location.href = `../../playlist.html?id=${playlist.id}`;
+    });
+    const playlistImg = document.getElementById("img-playlist-hero");
+    const playlistName = document.getElementById("playlistName");
+    const playlistDesc = document.getElementById("playlistDesc");
+    if (playlistImg && playlistName && playlistDesc) {
+        playlistImg.href = `../../playlist.html?id=${playlist.id}`;
+        playlistImg.innerHTML = `
+        <img src="${playlist.images[0].url}" class="img-fluid"/>
+      `;
+        playlistName.innerText = playlist.name;
+        playlistDesc.innerHTML = playlist.description;
+    }
+};
 const renderPlaylist = (playlist, divId) => {
     const playlistDiv = document.getElementById(divId);
     if (playlistDiv) {
         const playlistCard = document.createElement("div");
+        playlistCard.classList.add("col-lg-3", "col-md-4", "col-6");
         playlistCard.innerHTML = `
-        <a href="../../playlist.html?id=${playlist.id}">
-            <img src="${playlist.images[0].url}"/>
+      <div class="big-playlist-single-container">
+        <a
+          href="../../playlist.html?id=${playlist.id}"
+          class="img-playlist-medium d-block dynamic-content text-decoration-none"
+          ><img src="${playlist.images[0].url}" class="img-fluid"/>
         </a>
-        <h1>${playlist.name}</h1>
+
+        <p class="mb-0">${playlist.name}</p>
+      </div>
+
     `;
         playlistDiv.appendChild(playlistCard);
     }
@@ -61,11 +85,12 @@ const renderPlaylist = (playlist, divId) => {
 const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
     yield getPlaylistIds();
     const playlists = yield getPlaylist();
+    renderPlaylistTitle(playlists[0]);
     playlists.forEach((playlist, index) => {
-        if (index < 5) {
+        if (index < 4) {
             renderPlaylist(playlist, "playlistDiv");
         }
-        else if (index < 10) {
+        else if (index < 8) {
             renderPlaylist(playlist, "playlist2");
         }
         else {

@@ -7,7 +7,7 @@ const playlistId = urlParams.get("id");
 const options = {
   method: "GET",
   headers: {
-    "X-RapidAPI-Key": "5eba36709fmsh46db4e8e33040c1p10a999jsnc724d1df5f73",
+    "X-RapidAPI-Key": "1c97dd9171mshce60f6ca494e49ep1675cbjsn61e55e9dd7f6",
     "X-RapidAPI-Host": "spotify81.p.rapidapi.com",
   },
 };

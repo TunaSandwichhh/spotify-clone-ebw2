@@ -7,7 +7,7 @@ const url =
 const options = {
   method: "GET",
   headers: {
-    "X-RapidAPI-Key": "5eba36709fmsh46db4e8e33040c1p10a999jsnc724d1df5f73",
+    "X-RapidAPI-Key": "1c97dd9171mshce60f6ca494e49ep1675cbjsn61e55e9dd7f6",
     "X-RapidAPI-Host": "spotify81.p.rapidapi.com",
   },
 };
@@ -49,25 +49,58 @@ const getPlaylist = async (): Promise<Playlist[]> => {
   }
 };
 
-// export const getSearchResult = async (): Promise<SearchResult | null> => {
-//   try {
-//     const response =
-//   } catch (e) {
-//     console.log(e);
-//     return null;
-//   }
-// };
+const renderPlaylistTitle = (playlist: Playlist) => {
+  const playBtn = document.getElementById(
+    "playBtn"
+  ) as HTMLButtonElement | null;
+
+  playBtn?.addEventListener("click", () => {
+    window.location.href = `../../playlist.html?id=${playlist.id}`;
+  });
+
+  const playlistImg = document.getElementById(
+    "img-playlist-hero"
+  ) as HTMLAnchorElement | null;
+
+  const playlistName = document.getElementById(
+    "playlistName"
+  ) as HTMLElement | null;
+
+  const playlistDesc = document.getElementById(
+    "playlistDesc"
+  ) as HTMLElement | null;
+
+  if (playlistImg && playlistName && playlistDesc) {
+    playlistImg.href = `../../playlist.html?id=${playlist.id}`;
+    playlistImg.innerHTML = `
+        <img src="${playlist.images[0].url}" class="img-fluid"/>
+      `;
+
+    playlistName.innerText = playlist.name;
+
+    playlistDesc.innerHTML = playlist.description;
+  }
+};
 
 const renderPlaylist = (playlist: Playlist, divId: string) => {
   const playlistDiv = document.getElementById(divId) as HTMLElement | null;
 
   if (playlistDiv) {
     const playlistCard = document.createElement("div");
+
+    playlistCard.classList.add("col-lg-3", "col-md-4", "col-6");
+
     playlistCard.innerHTML = `
-        <a href="../../playlist.html?id=${playlist.id}">
-            <img src="${playlist.images[0].url}"/>
+      <div class="big-playlist-single-container">
+        <a
+          href="../../playlist.html?id=${playlist.id}"
+          class="img-playlist-medium d-block dynamic-content text-decoration-none"
+          ><img src="${playlist.images[0].url}" class="img-fluid"/>
         </a>
-        <h1>${playlist.name}</h1>
+
+        <p class="mb-0">${playlist.name}</p>
+      </div>
+
     `;
     playlistDiv.appendChild(playlistCard);
   }
@@ -76,11 +109,12 @@ const renderPlaylist = (playlist: Playlist, divId: string) => {
 const handleLoad = async () => {
   await getPlaylistIds();
   const playlists = await getPlaylist();
+  renderPlaylistTitle(playlists[0]);
 
   playlists.forEach((playlist, index) => {
-    if (index < 5) {
+    if (index < 4) {
       renderPlaylist(playlist, "playlistDiv");
-    } else if (index < 10) {
+    } else if (index < 8) {
       renderPlaylist(playlist, "playlist2");
     } else {
       renderPlaylist(playlist, "playlist3");
