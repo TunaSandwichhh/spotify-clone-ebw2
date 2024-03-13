@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const url = "https://spotify81.p.rapidapi.com/user_profile?id=nocopyrightsounds&playlistLimit=15&artistLimit=10";
+const url = "https://spotify81.p.rapidapi.com/user_profile?id=nocopyrightsounds&playlistLimit=1&artistLimit=10";
 const options = {
     method: "GET",
     headers: {
@@ -73,5 +73,14 @@ const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
         }
     });
 });
+const searchBtn = document.getElementById("searchBtn");
+if (searchBtn) {
+    searchBtn.addEventListener("click", () => {
+        const searchInput = document.getElementById("search")
+            .value;
+        if (searchInput)
+            window.location.href = `../../searchPage.html?q=${searchInput}`;
+    });
+}
 document.addEventListener("DOMContentLoaded", handleLoad);
 export {};
