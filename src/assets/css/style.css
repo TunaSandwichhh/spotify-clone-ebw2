@@ -25,6 +25,7 @@ body {
 .img-playlist-sub-hero {
     width: 70px;
     height: 70px;
+    min-width: 70px;
     
 }
 
@@ -68,11 +69,15 @@ body {
 /* .dynamic-content {
     color: red;
 }
-a.img-side-single-playlist.dynamic-content, a#img-playlist-hero, a.img-playlist-sub-hero, a.img-playlist-medium, a.img-preview-player {
+a.img-side-single-playlist.dynamic-content, a.img-preview-player {
     border: 1px solid red;
 } */
 
 #right-section #header-right-section form {
     position: relative;
     right: -14px;
+}
+
+#searchQuery {
+    padding: 4px;
 }
