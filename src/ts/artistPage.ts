@@ -96,9 +96,44 @@ const renderPopularTracks = (artistOvw: ArtistOverview) => {
   }
 };
 
-const renderDiscography = (artistOvw: ArtistOverview) => {};
+const renderDiscography = (artistOvw: ArtistOverview, index: number) => {
+  const discographyDiv = document.getElementById(
+    "discography"
+  ) as HTMLElement | null;
 
-const renderRelatedArtists = (artistOvw: ArtistOverview) => {};
+  if (discographyDiv) {
+    const albumDiv = document.createElement("div");
+    albumDiv.innerHTML = `
+
+      <a href="../../album.html?id=${artistOvw.discography.albums.items[index].releases.items[0].id}">
+      <img src="${artistOvw.discography.albums.items[index].releases.items[0].coverArt.sources[0].url}"/>
+      <p>${artistOvw.discography.albums.items[index].releases.items[0].name}</p>
+      </a>
+    `;
+
+    discographyDiv.appendChild(albumDiv);
+  }
+};
+
+const renderRelatedArtists = (artistOvw: ArtistOverview, index: number) => {
+  const relatedArtistsDiv = document.getElementById(
+    "relatedArtists"
+  ) as HTMLElement | null;
+
+  if (relatedArtistsDiv) {
+    const artistDiv = document.createElement("div");
+
+    artistDiv.innerHTML = `
+
+    <a href="../../artists.html?id=${artistOvw.relatedContent.relatedArtists.items[index].id}">
+      <img src="${artistOvw.relatedContent.relatedArtists.items[index].visuals.avatarImage.sources[0].url}"/>
+      <p>${artistOvw.relatedContent.relatedArtists.items[index].profile.name}</p>
+    </a>
+    `;
+
+    relatedArtistsDiv.appendChild(artistDiv);
+  }
+};
 
 const handleLoad = async () => {
   if (artistId) {
@@ -107,6 +142,22 @@ const handleLoad = async () => {
     if (artistOvw) {
       renderHeader(artistOvw);
       renderPopularTracks(artistOvw);
+
+      const artistAlbums = artistOvw.discography.albums.items;
+
+      artistAlbums.forEach((album, index) => {
+        if (index < 5) {
+          renderDiscography(artistOvw, index);
+        }
+      });
+
+      const relatedArtists = artistOvw.relatedContent.relatedArtists.items;
+
+      relatedArtists.forEach((artist, index) => {
+        if (index < 5) {
+          renderRelatedArtists(artistOvw, index);
+        }
+      });
     }
   }
 };
