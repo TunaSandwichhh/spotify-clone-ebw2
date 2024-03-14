@@ -1,22 +1,470 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Search Result</title>
-  </head>
-  <body>
-    <div id="topResult"></div>
-    <div id="trackResults">
-      <h2>Top Brani</h2>
-    </div>
-    <div id="playlistResults">
-      <h2>Con Artista</h2>
-    </div>
-    <div id="artistResults">
-      <h2>Artisti Correlati</h2>
-    </div>
 
-    <script type="module" src="./dist/ts/searchPage.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="./src/assets/css/style.css" />
+  <title>Search page</title>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-4 left-section pe-0">
+        <div class="first-container-left-section">
+          <nav class="navbar navbar-expand navbar-light bg-dark greytext p-4">
+            <ul class="navbar-nav d-flex flex-column">
+              <li>
+                <a href="#" class="text-decoration-none greytext"><i class="me-4 fs-4 bi bi-house"></i>Home</a>
+              </li>
+              <li>
+                <i class="me-3 fs-4 bi bi-search"></i>
+                <input type="text" id="search" placeholder="Cerca" class="btn-dark border-0 greytext" />
+                <button type="button" class="btn-outline-dark" id="searchBtn">
+                  Cerca
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="second-container-left-section mt-2">
+          <div class="header-second-container-left-section">
+            <nav class="navbar navbar-expand navbar-light text-white justify-content-between bg-dark p-4">
+              <ul class="navbar-nav">
+                <li>
+                  <a href="#" class="text-decoration-none text-white"><i class="me-3 fs-4 bi bi-collection"></i>La tua
+                    libreria</a>
+                </li>
+              </ul>
+              <ul class="navbar-nav">
+                <li>
+                  <a href="#" class="me-2 text-decoration-none text-white fs-4"><i
+                      class="bi bi-plus-circle-fill"></i></a>
+                </li>
+                <li>
+                  <a href="#" class="me-2 text-decoration-none text-white fs-4"><i
+                      class="bi bi-arrow-right-circle-fill"></i></a>
+                </li>
+              </ul>
+            </nav>
+            <nav class="navbar navbar-expand navbar-light bg-dark text-white px-4">
+              <ul class="navbar-nav nav-librerie">
+                <li>
+                  <a href="#" class="me-2 text-decoration-none text-white btn bg-secondary rounded-pill">Playlist</a>
+                </li>
+                <li>
+                  <a href="#" class="me-2 text-decoration-none text-white btn bg-secondary rounded-pill">Podcast e
+                    show</a>
+                </li>
+                <li>
+                  <a href="#" class="me-2 text-decoration-none text-white btn bg-secondary rounded-pill">Album</a>
+                </li>
+                <li>
+                  <a href="#" class="me-2 text-decoration-none text-white btn bg-secondary rounded-pill">Artisti</a>
+                </li>
+              </ul>
+            </nav>
+            <div class="body-second-container-left-section bg-dark px-4 pb-4">
+              <div class="navbar-body-second-container d-flex justify-content-between p-2">
+                <a href="#" class="text-decoration-none text-white"><i class="bi bi-search"></i></a>
+                <a href="#" class="text-decoration-none text-white">Recenti<i class="ms-2 bi bi-list-ul"></i></a>
+              </div>
+              <div id="side-playlist-list">
+                <div class="side-single-playlist d-flex mb-2">
+                  <a href="#" class="img-side-single-playlist text-decoration-none"><img
+                      src="https://images.unsplash.com/photo-1597589827317-4c6d6e0a90bd?q=80&w=2960&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                      class="img-fluid" /></a>
+                  <div class="ps-2 d-flex flex-column justify-content-center">
+                    <p class="mb-0">
+                      <a href="#" class="text-decoration-none text-white">Viaggio musicale</a>
+                    </p>
+                    <p class="my-0">
+                      <a href="#" class="text-decoration-none text-secondary">Playlist &middot; Spotify</a>
+                    </p>
+                  </div>
+                </div>
+                <div class="side-single-playlist d-flex mb-2">
+                  <a href="#" class="img-side-single-playlist text-decoration-none"><img
+                      src="https://cdn.pixabay.com/photo/2014/04/07/20/45/abstract-318919_1280.jpg"
+                      class="img-fluid" /></a>
+                  <div class="ps-2 d-flex flex-column justify-content-center">
+                    <p class="mb-0">
+                      <a href="#" class="text-decoration-none text-white">Emozioni</a>
+                    </p>
+                    <p class="my-0">
+                      <a href="#" class="text-decoration-none text-secondary">Playlist &middot; Spotify</a>
+                    </p>
+                  </div>
+                </div>
+                <div class="side-single-playlist d-flex mb-2">
+                  <a href="#" class="img-side-single-playlist text-decoration-none"><img
+                      src="https://images.unsplash.com/photo-1597589827317-4c6d6e0a90bd?q=80&w=2960&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                      class="img-fluid" /></a>
+                  <div class="ps-2 d-flex flex-column justify-content-center">
+                    <p class="mb-0">
+                      <a href="#" class="text-decoration-none text-white">Viaggio musicale</a>
+                    </p>
+                    <p class="my-0">
+                      <a href="#" class="text-decoration-none text-secondary">Playlist &middot; Spotify</a>
+                    </p>
+                  </div>
+                </div>
+                <div class="side-single-playlist d-flex mb-2">
+                  <a href="#" class="img-side-single-playlist text-decoration-none"><img
+                      src="https://cdn.pixabay.com/photo/2014/04/07/20/45/abstract-318919_1280.jpg"
+                      class="img-fluid" /></a>
+                  <div class="ps-2 d-flex flex-column justify-content-center">
+                    <p class="mb-0">
+                      <a href="#" class="text-decoration-none text-white">Emozioni</a>
+                    </p>
+                    <p class="my-0">
+                      <a href="#" class="text-decoration-none text-secondary">Playlist &middot; Spotify</a>
+                    </p>
+                  </div>
+                </div>
+                <div class="side-single-playlist d-flex mb-2">
+                  <a href="#" class="img-side-single-playlist text-decoration-none"><img
+                      src="https://images.unsplash.com/photo-1597589827317-4c6d6e0a90bd?q=80&w=2960&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                      class="img-fluid" /></a>
+                  <div class="ps-2 d-flex flex-column justify-content-center">
+                    <p class="mb-0">
+                      <a href="#" class="text-decoration-none text-white">Viaggio musicale</a>
+                    </p>
+                    <p class="my-0">
+                      <a href="#" class="text-decoration-none text-secondary">Playlist &middot; Spotify</a>
+                    </p>
+                  </div>
+                </div>
+                <div class="side-single-playlist d-flex mb-2">
+                  <a href="#" class="img-side-single-playlist text-decoration-none"><img
+                      src="https://cdn.pixabay.com/photo/2014/04/07/20/45/abstract-318919_1280.jpg"
+                      class="img-fluid" /></a>
+                  <div class="ps-2 d-flex flex-column justify-content-center">
+                    <p class="mb-0">
+                      <a href="#" class="text-decoration-none text-white">Emozioni</a>
+                    </p>
+                    <p class="my-0">
+                      <a href="#" class="text-decoration-none text-secondary">Playlist &middot; Spotify</a>
+                    </p>
+                  </div>
+                </div>
+                <div class="side-single-playlist d-flex mb-2">
+                  <a href="#" class="img-side-single-playlist text-decoration-none"><img
+                      src="https://images.unsplash.com/photo-1597589827317-4c6d6e0a90bd?q=80&w=2960&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                      class="img-fluid" /></a>
+                  <div class="ps-2 d-flex flex-column justify-content-center">
+                    <p class="mb-0">
+                      <a href="#" class="text-decoration-none text-white">Viaggio musicale</a>
+                    </p>
+                    <p class="my-0">
+                      <a href="#" class="text-decoration-none text-secondary">Playlist &middot; Spotify</a>
+                    </p>
+                  </div>
+                </div>
+                <div class="side-single-playlist d-flex mb-2">
+                  <a href="#" class="img-side-single-playlist text-decoration-none"><img
+                      src="https://cdn.pixabay.com/photo/2014/04/07/20/45/abstract-318919_1280.jpg"
+                      class="img-fluid" /></a>
+                  <div class="ps-2 d-flex flex-column justify-content-center">
+                    <p class="mb-0">
+                      <a href="#" class="text-decoration-none text-white">Emozioni</a>
+                    </p>
+                    <p class="my-0">
+                      <a href="#" class="text-decoration-none text-secondary">Playlist &middot; Spotify</a>
+                    </p>
+                  </div>
+                </div>
+                <div class="side-single-playlist d-flex mb-2">
+                  <a href="#" class="img-side-single-playlist text-decoration-none"><img
+                      src="https://images.unsplash.com/photo-1597589827317-4c6d6e0a90bd?q=80&w=2960&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                      class="img-fluid" /></a>
+                  <div class="ps-2 d-flex flex-column justify-content-center">
+                    <p class="mb-0">
+                      <a href="#" class="text-decoration-none text-white">Viaggio musicale</a>
+                    </p>
+                    <p class="my-0">
+                      <a href="#" class="text-decoration-none text-secondary">Playlist &middot; Spotify</a>
+                    </p>
+                  </div>
+                </div>
+                <div class="side-single-playlist d-flex mb-2">
+                  <a href="#" class="img-side-single-playlist text-decoration-none"><img
+                      src="https://cdn.pixabay.com/photo/2014/04/07/20/45/abstract-318919_1280.jpg"
+                      class="img-fluid" /></a>
+                  <div class="ps-2 d-flex flex-column justify-content-center">
+                    <p class="mb-0">
+                      <a href="#" class="text-decoration-none text-white">Emozioni</a>
+                    </p>
+                    <p class="my-0">
+                      <a href="#" class="text-decoration-none text-secondary">Playlist &middot; Spotify</a>
+                    </p>
+                  </div>
+                </div>
+                <div class="side-single-playlist d-flex mb-2">
+                  <a href="#" class="img-side-single-playlist text-decoration-none"><img
+                      src="https://images.unsplash.com/photo-1597589827317-4c6d6e0a90bd?q=80&w=2960&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                      class="img-fluid" /></a>
+                  <div class="ps-2 d-flex flex-column justify-content-center">
+                    <p class="mb-0">
+                      <a href="#" class="text-decoration-none text-white">Viaggio musicale</a>
+                    </p>
+                    <p class="my-0">
+                      <a href="#" class="text-decoration-none text-secondary">Playlist &middot; Spotify</a>
+                    </p>
+                  </div>
+                </div>
+                <div class="side-single-playlist d-flex mb-2">
+                  <a href="#" class="img-side-single-playlist text-decoration-none"><img
+                      src="https://cdn.pixabay.com/photo/2014/04/07/20/45/abstract-318919_1280.jpg"
+                      class="img-fluid" /></a>
+                  <div class="ps-2 d-flex flex-column justify-content-center">
+                    <p class="mb-0">
+                      <a href="#" class="text-decoration-none text-white">Emozioni</a>
+                    </p>
+                    <p class="my-0">
+                      <a href="#" class="text-decoration-none text-secondary">Playlist &middot; Spotify</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-8" id="right-section">
+        <div id="header-right-section" class="bg-dark position-sticky top-0">
+          <nav class="navbar navbar-expand-lg navbar-light text-white">
+            <div class="container-fluid justify-content-between">
+              <div class="row w-100 d-flex justify-content-between">
+                <div class="col-6 d-flex align-items-center">
+                  <a href="#" class="text-decoration-none me-3 text-white"><i class="bi bi-caret-left-fill"></i></a>
+                  <a href="#" class="text-decoration-none text-white"><i class="bi bi-caret-right-fill"></i></a>
+                </div>
+                <div class="col-6 d-flex justify-content-end pe-0">
+                  <form class="d-flex align-items-center">
+                    <button class="btn bg-white rounded-pill me-2" type="submit">
+                      Esplora premium
+                    </button>
+                    <a href="#" class="text-decoration-none text-white"><i class="m-2 bi bi-bell"></i></a>
+                    <a href="#" class="text-decoration-none text-white"><i class="m-2 bi bi-people-fill"></i></a>
+                    <a href="#" class="text-decoration-none text-white"><i class="ms-2 bi bi-person-circle"></i>
+                      </i></a>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div class="body-right-section bg-dark text-white mt-2 p-4" id="body-right">
+
+          <div class="row" id="search-history">
+            <p class="h3 text-white">Ricerche recenti</p>
+            <div class="col-lg-3 col-md-4 col-6">
+              <div class="big-playlist-single-container">
+                <a href="#"><img src="https://cdn.pixabay.com/photo/2014/04/07/20/45/abstract-318919_1280.jpg"
+                    class="fluid" /></a>
+                <p class="mb-0 mt-1">Nome playlist</p>
+                <p class="mt-0 text-secondary">Autore</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+              <div class="big-playlist-single-container">
+                <a href="#"><img src="https://cdn.pixabay.com/photo/2014/04/07/20/45/abstract-318919_1280.jpg"
+                    class="fluid" /></a>
+                <p class="mb-0 mt-1">Nome playlist</p>
+                <p class="mt-0 text-secondary">Autore</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+              <div class="big-playlist-single-container">
+                <a href="#"><img src="https://cdn.pixabay.com/photo/2014/04/07/20/45/abstract-318919_1280.jpg"
+                    class="fluid" /></a>
+                <p class="mb-0 mt-1">Nome playlist</p>
+                <p class="mt-0 text-secondary">Autore</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+              <div class="big-playlist-single-container">
+                <a href="#"><img src="https://cdn.pixabay.com/photo/2014/04/07/20/45/abstract-318919_1280.jpg"
+                    class="fluid" /></a>
+                <p class="mb-0 mt-1">Nome playlist</p>
+                <p class="mt-0 text-secondary">Autore</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" id="sfoglia-tutto">
+            <p class="h3 text-white">Sfoglia tutto</p>
+            <div class="col-lg-3 col-md-4 col-6 position-relative">
+              <div class="big-playlist-single-container">
+                <a href="#">
+                  <div class="colored-boxes"></div>
+                </a>
+                <p class="mb-0 mt-1 sfoglia-boxes">Musica</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 position-relative">
+              <div class="big-playlist-single-container">
+                <a href="#">
+                  <div class="colored-boxes"></div>
+                </a>
+                <p class="mb-0 mt-1 sfoglia-boxes">Podcast</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 position-relative">
+              <div class="big-playlist-single-container">
+                <a href="#">
+                  <div class="colored-boxes"></div>
+                </a>
+                <p class="mb-0 mt-1 sfoglia-boxes">Eventi dal vivo</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 position-relative">
+              <div class="big-playlist-single-container">
+                <a href="#">
+                  <div class="colored-boxes"></div>
+                </a>
+                <p class="mb-0 mt-1 sfoglia-boxes">Creato per te</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 position-relative mt-3">
+              <div class="big-playlist-single-container">
+                <a href="#">
+                  <div class="colored-boxes"></div>
+                </a>
+                <p class="mb-0 mt-1 sfoglia-boxes">Musica</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 position-relative mt-3">
+              <div class="big-playlist-single-container">
+                <a href="#">
+                  <div class="colored-boxes"></div>
+                </a>
+                <p class="mb-0 mt-1 sfoglia-boxes">Podcast</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 position-relative mt-3">
+              <div class="big-playlist-single-container">
+                <a href="#">
+                  <div class="colored-boxes"></div>
+                </a>
+                <p class="mb-0 mt-1 sfoglia-boxes">Eventi dal vivo</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 position-relative mt-3">
+              <div class="big-playlist-single-container">
+                <a href="#">
+                  <div class="colored-boxes"></div>
+                </a>
+                <p class="mb-0 mt-1 sfoglia-boxes">Creato per te</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 position-relative mt-3">
+              <div class="big-playlist-single-container">
+                <a href="#">
+                  <div class="colored-boxes"></div>
+                </a>
+                <p class="mb-0 mt-1 sfoglia-boxes">Musica</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 position-relative mt-3">
+              <div class="big-playlist-single-container">
+                <a href="#">
+                  <div class="colored-boxes"></div>
+                </a>
+                <p class="mb-0 mt-1 sfoglia-boxes">Podcast</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 position-relative mt-3">
+              <div class="big-playlist-single-container">
+                <a href="#">
+                  <div class="colored-boxes"></div>
+                </a>
+                <p class="mb-0 mt-1 sfoglia-boxes">Eventi dal vivo</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 position-relative mt-3">
+              <div class="big-playlist-single-container">
+                <a href="#">
+                  <div class="colored-boxes"></div>
+                </a>
+                <p class="mb-0 mt-1 sfoglia-boxes">Creato per te</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 position-relative mt-3">
+              <div class="big-playlist-single-container">
+                <a href="#">
+                  <div class="colored-boxes"></div>
+                </a>
+                <p class="mb-0 mt-1 sfoglia-boxes">Musica</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 position-relative mt-3">
+              <div class="big-playlist-single-container">
+                <a href="#">
+                  <div class="colored-boxes"></div>
+                </a>
+                <p class="mb-0 mt-1 sfoglia-boxes">Podcast</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 position-relative mt-3">
+              <div class="big-playlist-single-container">
+                <a href="#">
+                  <div class="colored-boxes"></div>
+                </a>
+                <p class="mb-0 mt-1 sfoglia-boxes">Eventi dal vivo</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 position-relative mt-3">
+              <div class="big-playlist-single-container">
+                <a href="#">
+                  <div class="colored-boxes"></div>
+                </a>
+                <p class="mb-0 mt-1 sfoglia-boxes">Creato per te</p>
+              </div>
+            </div>
+            
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div id="player-section"
+      class="row player-section text-white position-absolute w-100 bottom-0 text-center align-items-center p-2 px-4">
+      <div class="col-3">
+        <div class="dettagli-brano d-flex align-items-center">
+          <a class="img-preview-player dynamic-content text-decoration-none me-2" href="#">
+            <img src="" alt="" id="currentTrackImage" class="img-fluid">
+          </a>
+          <div class="details-preview-player dynamic-content">
+            <p class="my-0 text-start" id="playerTrackName">Nome brano</p>
+            <p class="my-0" id="playerArtistName">Nome artista</p>
+          </div>
+          <div class="icon-preview-player">
+            <i class="bi bi-check-circle-fill ms-4"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <audio controls id="audioElement">
+          <source src="" />
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+      <div class="col-3 fs-4 d-flex justify-content-end">
+        <i class="bi bi-file-play me-2"></i><i class="bi bi-mic me-2"></i><i class="bi bi-list me-2"></i><i
+          class="bi bi-phone me-2"></i><i class="bi bi-arrows-fullscreen"></i>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+  <script type="module" src="./dist/ts/searchPage.js"></script>
+</body>
+
 </html>
