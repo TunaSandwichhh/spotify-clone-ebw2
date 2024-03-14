@@ -2,6 +2,16 @@ body {
     background: black;
 }
 
+.sfoglia-boxes {
+    position: absolute;
+    top: 5px;
+    left: 20px;
+}
+
+#sfoglia-tutto {
+    margin-bottom: 100px;
+}
+
 #right-section {
     height: 100vh;
     overflow-y: scroll;
@@ -22,6 +32,7 @@ body {
     max-width: 230px;
 }
 
+
 .img-playlist-sub-hero {
     width: 70px;
     height: 70px;
@@ -29,9 +40,13 @@ body {
     
 }
 
-.img-playlist-medium {
+.img-playlist-medium, #search-history img, .colored-boxes {
     width: 120px;
     height: 120px;
+}
+
+.colored-boxes {
+    background: #8f6f29;
 }
 
 .img-side-single-playlist {
