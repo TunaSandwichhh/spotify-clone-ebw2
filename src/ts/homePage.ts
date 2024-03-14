@@ -2,7 +2,7 @@ import { Playlist } from "./types/Playlist";
 import { UserProfile } from "./types/UserProfile";
 
 const url =
-  "https://spotify81.p.rapidapi.com/user_profile?id=nocopyrightsounds&playlistLimit=1&artistLimit=10";
+  "https://spotify81.p.rapidapi.com/user_profile?id=a96ylqq5z8yrb857orsesj2pp&playlistLimit=9&artistLimit=10";
 
 const options = {
   method: "GET",
@@ -113,9 +113,9 @@ const handleLoad = async () => {
   renderPlaylistTitle(playlists[0]);
 
   playlists.forEach((playlist, index) => {
-    if (index < 4) {
+    if (index < 3) {
       renderPlaylist(playlist, "playlistDiv");
-    } else if (index < 8) {
+    } else if (index < 6) {
       renderPlaylist(playlist, "playlist2");
     } else {
       renderPlaylist(playlist, "playlist3");

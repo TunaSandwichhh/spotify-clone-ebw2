@@ -79,7 +79,8 @@ const renderPlaylistTrack = (track: Track, index: number) => {
       "row",
       "row-single-tracks",
       "d-flex",
-      "align-items-center"
+      "align-items-center",
+      "mb-4"
     );
 
     const artistLinks = track.artists.map(

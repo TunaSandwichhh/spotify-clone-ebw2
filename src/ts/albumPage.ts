@@ -66,7 +66,8 @@ const renderAlbumTrack = (track: Track, album: Album, index: number): void => {
       "row",
       "row-single-tracks",
       "d-flex",
-      "align-items-center"
+      "align-items-center",
+      "mb-4"
     );
 
     const artistLinks = track.artists.map(

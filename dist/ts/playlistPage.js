@@ -57,7 +57,7 @@ const renderPlaylistTrack = (track, index) => {
     const playerArtistName = document.getElementById("playerArtistName");
     if (bodyRightDiv) {
         const trackDiv = document.createElement("div");
-        trackDiv.classList.add("row", "row-single-tracks", "d-flex", "align-items-center");
+        trackDiv.classList.add("row", "row-single-tracks", "d-flex", "align-items-center", "mb-4");
         const artistLinks = track.artists.map((artist) => `<a href="../../artists.html?id=${artist.id}" class="text-decoration-none text-secondary">${artist.name}</a>`);
         trackDiv.innerHTML = `
     <div class="col">${index + 1}</div>

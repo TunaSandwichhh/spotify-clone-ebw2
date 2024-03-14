@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const url = "https://spotify81.p.rapidapi.com/user_profile?id=nocopyrightsounds&playlistLimit=1&artistLimit=10";
+const url = "https://spotify81.p.rapidapi.com/user_profile?id=a96ylqq5z8yrb857orsesj2pp&playlistLimit=9&artistLimit=10";
 const options = {
     method: "GET",
     headers: {
@@ -87,10 +87,10 @@ const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
     const playlists = yield getPlaylist();
     renderPlaylistTitle(playlists[0]);
     playlists.forEach((playlist, index) => {
-        if (index < 4) {
+        if (index < 3) {
             renderPlaylist(playlist, "playlistDiv");
         }
-        else if (index < 8) {
+        else if (index < 6) {
             renderPlaylist(playlist, "playlist2");
         }
         else {
