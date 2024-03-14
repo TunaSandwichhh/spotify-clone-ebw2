@@ -8,7 +8,7 @@ body {
 }
 
 #side-playlist-list {
-    height: 39.5vh;
+    height: 50vh;
     overflow-y: scroll;
 }
 
@@ -80,4 +80,13 @@ a.img-side-single-playlist.dynamic-content, a.img-preview-player {
 
 #searchQuery {
     padding: 4px;
+}
+
+#player-section {
+    background: #181818;
+}
+
+.row-single-tracks img {
+    width: 50px;
+    height: 50px;
 }
