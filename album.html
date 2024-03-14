@@ -20,7 +20,7 @@
           <nav class="navbar navbar-expand navbar-light bg-dark greytext p-4">
             <ul class="navbar-nav d-flex flex-column">
               <li>
-                <a href="#" class="text-decoration-none greytext"><i
+                <a href="./index.html" class="text-decoration-none greytext"><i
                     class="me-4 fs-4 bi bi-house"></i>Home</a>
               </li>
               <li>
@@ -261,21 +261,15 @@
             </div>
           </nav>
         </div>
-        <div class="body-right-section bg-dark text-white mt-2 p-4">
+        <div class="body-right-section bg-dark text-white mt-2 p-4" id="body-right">
           <div class="hero d-flex position-relative" id="playlistTitle">
             <a href="#" id="img-playlist-hero" class="p-2"></a>
             <div class="content-hero ps-2">
               <p class="mb-0">Album</p>
-              <h2 class="playlist-name display-4 fw-bold" id="playlistName">
+              <h2 class="playlist-name display-4 fw-bold" id="albumName">
                 Nome album
               </h2>
-              <p class="playlist-details">
-                <span>Artista</span>
-                <span>&middot;</span>
-                <span>Anno</span>
-                <span>&middot;</span>
-                <span>Numero brani,</span>
-                <span>Durata</span>
+              <p class="playlist-details" id="album-details">
               </p>
               <button class="btn bg-success rounded-pill me-2 px-4 py-2" id="playBtn" type="submit">
                 Play
@@ -315,7 +309,7 @@
 
           </div>
 
-          <div class="row row-single-tracks d-flex align-items-center">
+          <!-- <div class="row row-single-tracks d-flex align-items-center">
             <div class="col">1</div>
             <div class="col-5 d-flex">
               <div>
@@ -334,20 +328,7 @@
             </div>
             <div class="col-5"><a href="#" class="text-white text-decoration-none">Album #1</a></div>
             <div class="col">4:00</div>
-          </div>
-
-          <!-- <div class="side-single-playlist d-flex mb-2">
-            
-            <div class="ps-2 d-flex flex-column justify-content-center">
-              <p class="mb-0">
-                <a href="#" class="text-decoration-none text-white">Emozioni</a>
-              </p>
-              <p class="my-0">
-                <a href="#" class="text-decoration-none text-secondary">Playlist &middot; Spotify</a>
-              </p>
-            </div>
           </div> -->
-
 
 
           
@@ -359,10 +340,12 @@
       class="row player-section text-white position-absolute w-100 bottom-0 text-center align-items-center p-2 px-4">
       <div class="col-3">
         <div class="dettagli-brano d-flex align-items-center">
-          <a class="img-preview-player dynamic-content text-decoration-none me-2" href="#">Immagine</a>
+          <a class="img-preview-player dynamic-content text-decoration-none me-2" href="#">
+            <img src="" alt="" class="img-fluid" id="currentTrackImage">
+          </a>
           <div class="details-preview-player dynamic-content">
-            <p class="my-0 text-start">Nome brano</p>
-            <p class="my-0">Nome artista</p>
+            <p class="my-0 text-start" id="playerTrackName">Nome brano</p>
+            <p class="my-0" id="playerArtistName">Nome artista</p>
           </div>
           <div class="icon-preview-player">
             <i class="bi bi-check-circle-fill ms-4"></i>
@@ -370,7 +353,7 @@
         </div>
       </div>
       <div class="col">
-        <audio controls>
+        <audio controls id="audioElement">
           <source src="" />
           Your browser does not support the audio element.
         </audio>

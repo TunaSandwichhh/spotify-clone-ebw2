@@ -27,35 +27,100 @@ const getAlbum = (id) => __awaiter(void 0, void 0, void 0, function* () {
         return null;
     }
 });
-const renderTrack = (track, albumImgUrl) => {
-    const container = document.getElementById("container");
+const formatMilliseconds = (milliseconds) => {
+    const totalSeconds = Math.floor(milliseconds / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    const formattedMinutes = minutes.toString();
+    const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds.toString();
+    return `${formattedMinutes}:${formattedSeconds}`;
+};
+const renderAlbumTrack = (track, album, index) => {
+    const bodyRightDiv = document.getElementById("body-right");
     const audioElement = document.getElementById("audioElement");
     const currentTrackImage = document.getElementById("currentTrackImage");
-    if (container) {
+    const playerTrackName = document.getElementById("playerTrackName");
+    const playerArtistName = document.getElementById("playerArtistName");
+    if (bodyRightDiv) {
         const trackDiv = document.createElement("div");
-        const artistLinks = track.artists.map((artist) => `<a href="../../artists.html?id=${artist.id}">${artist.name}</a>`);
+        trackDiv.classList.add("row", "row-single-tracks", "d-flex", "align-items-center");
+        const artistLinks = track.artists.map((artist) => `<a href="../../artists.html?id=${artist.id}" class="text-decoration-none text-secondary">${artist.name}</a>`);
         trackDiv.innerHTML = `
-    <img src="${albumImgUrl}" />
-    <h1>${track.name}</h1>
-    <h2>${artistLinks}</h2>
+    <div class="col">${index + 1}</div>
+    <div class="col-5 d-flex">
+      <div>
+        <img id="trackImg-${index + 1}"
+          src="${album.images[0].url}"
+          class="img-fluid " />
+      </div>
+      <div class="d-flex flex-column justify-content-center">
+        <p class="mb-0">
+          <a href="../../album.html?id=${album.id}" class="text-decoration-none text-white">${track.name}</a>
+        </p>
+        <p class="my-0">
+          ${artistLinks}
+        </p>
+      </div>
+    </div>
+    <div class="col-5"><a href="../../album.html?id=${album.id}" class="text-white text-decoration-none">${album.name}</a></div>
+    <div class="col">${formatMilliseconds(track.duration_ms)}</div>
     `;
-        trackDiv.addEventListener("click", () => {
-            if (audioElement && currentTrackImage) {
-                currentTrackImage.src = albumImgUrl;
+        bodyRightDiv.appendChild(trackDiv);
+        const trackImg = document.getElementById(`trackImg-${index + 1}`);
+        trackImg === null || trackImg === void 0 ? void 0 : trackImg.addEventListener("click", () => {
+            if (audioElement &&
+                currentTrackImage &&
+                playerArtistName &&
+                playerTrackName) {
+                currentTrackImage.src = album.images[0].url;
+                playerTrackName.innerText = track.name;
+                playerArtistName.innerText = `${track.artists.map((artist) => artist.name)}`;
                 audioElement.src = track.preview_url;
                 audioElement.play();
             }
         });
-        container.appendChild(trackDiv);
+    }
+};
+const renderAlbumDesc = (album) => {
+    const albumImg = document.getElementById("img-playlist-hero");
+    const albumName = document.getElementById("albumName");
+    const albumDetails = document.getElementById("album-details");
+    if (albumImg && albumName && albumDetails) {
+        albumImg.innerHTML = `
+      <img src="${album.images[0].url}" class="img-fluid">
+    `;
+        albumName.innerText = album.name;
+        albumDetails.innerHTML = `
+    <span>${album.artists[0].name}</span>
+    <span>&middot;</span>
+    <span>${album.release_date.split("-").shift()}</span>
+    <span>&middot;</span>
+    <span>${album.tracks.items.length} brani</span>
+    <span>&middot;</span>
+    <span>${formatMilliseconds(album.tracks.items
+            .map((item) => item.duration_ms)
+            .reduce((acc, curr) => acc + curr))}</span>
+    `;
     }
 };
 const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
     if (albumId) {
         const album = yield getAlbum(albumId);
-        album === null || album === void 0 ? void 0 : album.tracks.items.forEach((track) => {
-            renderTrack(track, album.images[0].url);
+        if (album)
+            renderAlbumDesc(album);
+        album === null || album === void 0 ? void 0 : album.tracks.items.forEach((track, index) => {
+            renderAlbumTrack(track, album, index);
         });
     }
 });
+const searchBtn = document.getElementById("searchBtn");
+if (searchBtn) {
+    searchBtn.addEventListener("click", () => {
+        const searchInput = document.getElementById("search")
+            .value;
+        if (searchInput)
+            window.location.href = `../../searchPage.html?q=${searchInput}`;
+    });
+}
 document.addEventListener("DOMContentLoaded", handleLoad);
 export {};
