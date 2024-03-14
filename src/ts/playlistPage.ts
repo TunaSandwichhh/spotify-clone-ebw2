@@ -45,9 +45,20 @@ const getPlaylist = async (id: string): Promise<Playlist | null> => {
   }
 };
 
-const renderPlaylistTrack = (track: Track) => {
-  const playlistTracks = document.getElementById(
-    "playlistTracks"
+export const formatMilliseconds = (milliseconds: number): string => {
+  const totalSeconds = Math.floor(milliseconds / 1000);
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+
+  const formattedMinutes = minutes.toString();
+  const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds.toString();
+
+  return `${formattedMinutes}:${formattedSeconds}`;
+};
+
+const renderPlaylistTrack = (track: Track, index: number) => {
+  const bodyRightDiv = document.getElementById(
+    "body-right"
   ) as HTMLElement | null;
   const audioElement = document.getElementById(
     "audioElement"
@@ -55,49 +66,96 @@ const renderPlaylistTrack = (track: Track) => {
   const currentTrackImage = document.getElementById(
     "currentTrackImage"
   ) as HTMLImageElement | null;
+  const playerTrackName = document.getElementById(
+    "playerTrackName"
+  ) as HTMLElement | null;
+  const playerArtistName = document.getElementById(
+    "playerArtistName"
+  ) as HTMLElement | null;
 
-  if (playlistTracks) {
-    console.log("Album: ", track.album);
-
+  if (bodyRightDiv) {
     const trackDiv = document.createElement("div");
+    trackDiv.classList.add(
+      "row",
+      "row-single-tracks",
+      "d-flex",
+      "align-items-center"
+    );
+
     const artistLinks = track.artists.map(
       (artist) =>
-        `<a href="../../artists.html?id=${artist.id}">${artist.name}</a>`
+        `<a href="../../artists.html?id=${artist.id}" class="text-decoration-none text-secondary">${artist.name}</a>`
     );
-    trackDiv.innerHTML = `
- <img src="${track.album.images[0].url}"/>  
- <h1>${track.name}</h1>
- <h2>${artistLinks}</h2>
- <a href="../../album.html?id=${track.album.id}">
-  <p>${track.album.name}</p>
- </a>
- <p>${track.duration_ms}</p>
- `;
 
-    trackDiv.addEventListener("click", () => {
-      if (audioElement && currentTrackImage) {
+    trackDiv.innerHTML = `
+    <div class="col">${index + 1}</div>
+    <div class="col-5 d-flex">
+      <div>
+        <img id="trackImg-${index + 1}"
+          src="${track.album.images[0].url}"
+          class="img-fluid " />
+      </div>
+      <div class="d-flex flex-column justify-content-center">
+        <p class="mb-0">
+          <a href="../../album.html?id=${
+            track.album.id
+          }" class="text-decoration-none text-white">${track.name}</a>
+        </p>
+        <p class="my-0">
+          ${artistLinks}
+        </p>
+      </div>
+    </div>
+    <div class="col-5"><a href="../../album.html?id=${
+      track.album.id
+    }" class="text-white text-decoration-none">${track.album.name}</a></div>
+    <div class="col">${formatMilliseconds(track.duration_ms)}</div>
+    `;
+
+    bodyRightDiv.appendChild(trackDiv);
+
+    const trackImg = document.getElementById(
+      `trackImg-${index + 1}`
+    ) as HTMLImageElement;
+
+    trackImg?.addEventListener("click", () => {
+      if (
+        audioElement &&
+        currentTrackImage &&
+        playerArtistName &&
+        playerTrackName
+      ) {
         currentTrackImage.src = track.album.images[0].url;
+        playerTrackName.innerText = track.name;
+        playerArtistName.innerText = `${track.artists.map(
+          (artist) => artist.name
+        )}`;
         audioElement.src = track.preview_url;
         audioElement.play();
       }
     });
-
-    playlistTracks.appendChild(trackDiv);
   }
 };
 
 const renderPlaylistDesc = (playlist: Playlist) => {
-  const playlistDescDiv = document.getElementById(
+  const imageLink = document.getElementById(
+    "img-playlist-hero"
+  ) as HTMLAnchorElement | null;
+
+  const playlistName = document.getElementById(
+    "playlistName"
+  ) as HTMLElement | null;
+
+  const playlistDesc = document.getElementById(
     "playlistDesc"
   ) as HTMLElement | null;
 
-  if (playlistDescDiv) {
-    playlistDescDiv.innerHTML = `
-      <img src="${playlist.images[0].url}">
-      <h1>${playlist.name}</h1>
-      <p>Realizzata per ${playlist.owner?.display_name}</p>
-      <p>${playlist.tracks.items.length} brani</p>
+  if (imageLink && playlistName && playlistDesc) {
+    imageLink.innerHTML = `
+      <img src="${playlist.images[0].url}" class="img-fluid"/>
     `;
+    playlistName.innerText = playlist.name;
+    playlistDesc.innerHTML = playlist.description;
   }
 };
 
@@ -108,9 +166,9 @@ const handleLoad = async () => {
 
     if (playlist) renderPlaylistDesc(playlist);
 
-    for (let track of tracks) {
-      renderPlaylistTrack(track);
-    }
+    tracks.forEach((track, index) => {
+      renderPlaylistTrack(track, index);
+    });
   }
 };
 

@@ -41,43 +41,70 @@ const getPlaylist = (id) => __awaiter(void 0, void 0, void 0, function* () {
         return null;
     }
 });
-const renderPlaylistTrack = (track) => {
-    const playlistTracks = document.getElementById("playlistTracks");
+export const formatMilliseconds = (milliseconds) => {
+    const totalSeconds = Math.floor(milliseconds / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    const formattedMinutes = minutes.toString();
+    const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds.toString();
+    return `${formattedMinutes}:${formattedSeconds}`;
+};
+const renderPlaylistTrack = (track, index) => {
+    const bodyRightDiv = document.getElementById("body-right");
     const audioElement = document.getElementById("audioElement");
     const currentTrackImage = document.getElementById("currentTrackImage");
-    if (playlistTracks) {
-        console.log("Album: ", track.album);
+    const playerTrackName = document.getElementById("playerTrackName");
+    const playerArtistName = document.getElementById("playerArtistName");
+    if (bodyRightDiv) {
         const trackDiv = document.createElement("div");
-        const artistLinks = track.artists.map((artist) => `<a href="../../artists.html?id=${artist.id}">${artist.name}</a>`);
+        trackDiv.classList.add("row", "row-single-tracks", "d-flex", "align-items-center");
+        const artistLinks = track.artists.map((artist) => `<a href="../../artists.html?id=${artist.id}" class="text-decoration-none text-secondary">${artist.name}</a>`);
         trackDiv.innerHTML = `
- <img src="${track.album.images[0].url}"/>  
- <h1>${track.name}</h1>
- <h2>${artistLinks}</h2>
- <a href="../../album.html?id=${track.album.id}">
-  <p>${track.album.name}</p>
- </a>
- <p>${track.duration_ms}</p>
- `;
-        trackDiv.addEventListener("click", () => {
-            if (audioElement && currentTrackImage) {
+    <div class="col">${index + 1}</div>
+    <div class="col-5 d-flex">
+      <div>
+        <img id="trackImg-${index + 1}"
+          src="${track.album.images[0].url}"
+          class="img-fluid " />
+      </div>
+      <div class="d-flex flex-column justify-content-center">
+        <p class="mb-0">
+          <a href="../../album.html?id=${track.album.id}" class="text-decoration-none text-white">${track.name}</a>
+        </p>
+        <p class="my-0">
+          ${artistLinks}
+        </p>
+      </div>
+    </div>
+    <div class="col-5"><a href="../../album.html?id=${track.album.id}" class="text-white text-decoration-none">${track.album.name}</a></div>
+    <div class="col">${formatMilliseconds(track.duration_ms)}</div>
+    `;
+        bodyRightDiv.appendChild(trackDiv);
+        const trackImg = document.getElementById(`trackImg-${index + 1}`);
+        trackImg === null || trackImg === void 0 ? void 0 : trackImg.addEventListener("click", () => {
+            if (audioElement &&
+                currentTrackImage &&
+                playerArtistName &&
+                playerTrackName) {
                 currentTrackImage.src = track.album.images[0].url;
+                playerTrackName.innerText = track.name;
+                playerArtistName.innerText = `${track.artists.map((artist) => artist.name)}`;
                 audioElement.src = track.preview_url;
                 audioElement.play();
             }
         });
-        playlistTracks.appendChild(trackDiv);
     }
 };
 const renderPlaylistDesc = (playlist) => {
-    var _a;
-    const playlistDescDiv = document.getElementById("playlistDesc");
-    if (playlistDescDiv) {
-        playlistDescDiv.innerHTML = `
-      <img src="${playlist.images[0].url}">
-      <h1>${playlist.name}</h1>
-      <p>Realizzata per ${(_a = playlist.owner) === null || _a === void 0 ? void 0 : _a.display_name}</p>
-      <p>${playlist.tracks.items.length} brani</p>
+    const imageLink = document.getElementById("img-playlist-hero");
+    const playlistName = document.getElementById("playlistName");
+    const playlistDesc = document.getElementById("playlistDesc");
+    if (imageLink && playlistName && playlistDesc) {
+        imageLink.innerHTML = `
+      <img src="${playlist.images[0].url}" class="img-fluid"/>
     `;
+        playlistName.innerText = playlist.name;
+        playlistDesc.innerHTML = playlist.description;
     }
 };
 const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -86,10 +113,9 @@ const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
         const playlist = yield getPlaylist(playlistId);
         if (playlist)
             renderPlaylistDesc(playlist);
-        for (let track of tracks) {
-            renderPlaylistTrack(track);
-        }
+        tracks.forEach((track, index) => {
+            renderPlaylistTrack(track, index);
+        });
     }
 });
 document.addEventListener("DOMContentLoaded", handleLoad);
-export {};
