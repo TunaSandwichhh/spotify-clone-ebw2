@@ -79,14 +79,14 @@ body {
     min-width: 280px;
 }
 
-/*Dynamic content temporary style*/
-
-/* .dynamic-content {
-    color: red;
+.lighterbg {
+    background: #303030;
 }
-a.img-side-single-playlist.dynamic-content, a.img-preview-player {
-    border: 1px solid red;
-} */
+
+.single-track-search-page img {
+    max-width: 50px;
+    max-height: 50px;
+}
 
 #right-section #header-right-section form {
     position: relative;
