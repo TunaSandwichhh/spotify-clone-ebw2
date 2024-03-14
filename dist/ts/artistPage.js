@@ -63,12 +63,12 @@ const renderHeader = (artistOvw) => {
     }
 };
 const renderPopularTracks = (artistOvw, index) => {
-    const bodyRightDiv = document.getElementById("body-right");
+    const tracksContainer = document.getElementById("tracksContainer");
     const audioElement = document.getElementById("audioElement");
     const currentTrackImage = document.getElementById("currentTrackImage");
     const playerTrackName = document.getElementById("playerTrackName");
     const playerArtistName = document.getElementById("playerArtistName");
-    if (bodyRightDiv) {
+    if (tracksContainer) {
         const trackDiv = document.createElement("div");
         trackDiv.classList.add("row", "row-single-tracks", "d-flex", "align-items-center");
         const artistLinks = artistOvw.discography.topTracks.items[index].track.artists.items.map((artist) => `<a href="../../artists.html?id=${artist.uri
@@ -97,7 +97,7 @@ const renderPopularTracks = (artistOvw, index) => {
     <div class="col">${formatMilliseconds(artistOvw.discography.topTracks.items[index].track.duration
             .totalMilliseconds)}</div>
     `;
-        bodyRightDiv.appendChild(trackDiv);
+        tracksContainer.appendChild(trackDiv);
         const trackImg = document.getElementById(`trackImg-${index + 1}`);
         trackImg === null || trackImg === void 0 ? void 0 : trackImg.addEventListener("click", () => __awaiter(void 0, void 0, void 0, function* () {
             if (audioElement &&
@@ -120,14 +120,17 @@ const renderPopularTracks = (artistOvw, index) => {
 };
 const renderDiscography = (artistOvw, index) => {
     const discographyDiv = document.getElementById("discography");
+    console.log("nel renderDiscography", discographyDiv);
     if (discographyDiv) {
         const albumDiv = document.createElement("div");
+        albumDiv.classList.add("col-lg-3", "col-md-4", "col-6");
         albumDiv.innerHTML = `
-
-      <a href="../../album.html?id=${artistOvw.discography.albums.items[index].releases.items[0].id}">
-      <img src="${artistOvw.discography.albums.items[index].releases.items[0].coverArt.sources[0].url}"/>
-      <p>${artistOvw.discography.albums.items[index].releases.items[0].name}</p>
+    <div class="big-playlist-single-container">
+      <a class="img-playlist-medium d-block dynamic-content text-decoration-none" href="../../album.html?id=${artistOvw.discography.albums.items[index].releases.items[0].id}">
+        <img class="img-fluid" src="${artistOvw.discography.albums.items[index].releases.items[0].coverArt.sources[0].url}">
       </a>
+      <p class="mb-0 mt-1">${artistOvw.discography.albums.items[index].releases.items[0].name}</p>
+    </div>
     `;
         discographyDiv.appendChild(albumDiv);
     }
@@ -136,14 +139,30 @@ const renderRelatedArtists = (artistOvw, index) => {
     const relatedArtistsDiv = document.getElementById("relatedArtists");
     if (relatedArtistsDiv) {
         const artistDiv = document.createElement("div");
+        artistDiv.classList.add("col-3");
         artistDiv.innerHTML = `
-
-    <a href="../../artists.html?id=${artistOvw.relatedContent.relatedArtists.items[index].id}">
-      <img src="${artistOvw.relatedContent.relatedArtists.items[index].visuals.avatarImage.sources[0].url}"/>
-      <p>${artistOvw.relatedContent.relatedArtists.items[index].profile.name}</p>
-    </a>
+      <div class="correlated-artist-img">
+        
+        <img src="${artistOvw.relatedContent.relatedArtists.items[index].visuals.avatarImage.sources[0].url}" class="img-fluid rounded-circle"/>
+      </div>
+      <div class="artist-name p-3">
+        <a href="../../artists.html${artistOvw.relatedContent.relatedArtists.items[index].id}" class="text-decoration-none text-light">
+          <p class="mb-0">${artistOvw.relatedContent.relatedArtists.items[index].profile.name}</p>
+        </a>
+        <p class="mt-0 text-secondary">Artista</p>
+      </div>
     `;
         relatedArtistsDiv.appendChild(artistDiv);
+    }
+};
+const renderArtistInfo = (artistOvw) => {
+    const artistInfoDiv = document.getElementById("artistInfoDiv");
+    if (artistInfoDiv) {
+        artistInfoDiv.style.backgroundImage = `url(${artistOvw.visuals.headerImage.sources[0].url})`;
+        artistInfoDiv.innerHTML = `
+    <p>${artistOvw.stats.monthlyListeners.toLocaleString("en-US")} ascoltatori mensili</p>
+    <p>${artistOvw.profile.biography.text}</p>
+    `;
     }
 };
 const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -158,17 +177,19 @@ const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
                     renderPopularTracks(artistOvw, index);
             });
             const artistAlbums = artistOvw.discography.albums.items;
+            console.log("album dell'artista", artistAlbums);
             artistAlbums.forEach((album, index) => {
-                if (index < 5) {
+                if (index < 4) {
                     renderDiscography(artistOvw, index);
                 }
             });
             const relatedArtists = artistOvw.relatedContent.relatedArtists.items;
             relatedArtists.forEach((artist, index) => {
-                if (index < 5) {
+                if (index < 4) {
                     renderRelatedArtists(artistOvw, index);
                 }
             });
+            renderArtistInfo(artistOvw);
         }
     }
 });

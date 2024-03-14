@@ -281,8 +281,7 @@
             <h3>Popolari</h3>
           </div>
 
-          <div class="row row-single-tracks d-flex align-items-center">
-          </div>
+          <div id="tracksContainer"></div>
 
           <div class="row" id="row-disc-title">
             <div class="col-12 d-flex justify-content-between mt-4 mb-3 align-items-center">
@@ -298,31 +297,8 @@
           </div>
 
           
-          <div class="row" id="row-disc-cards">
-            <div class="col-lg-3 col-md-4 col-6">
-              <div class="big-playlist-single-container">
-                <a class="img-playlist-medium d-block dynamic-content text-decoration-none" href="#"><img class="img-fluid" src="https://cdn.pixabay.com/photo/2014/04/07/20/45/abstract-318919_1280.jpg"></a>
-                <p class="mb-0 mt-1">Titolo album</p>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-              <div class="big-playlist-single-container">
-                <a class="img-playlist-medium d-block dynamic-content text-decoration-none" href="#"><img class="img-fluid" src="https://cdn.pixabay.com/photo/2014/04/07/20/45/abstract-318919_1280.jpg"></a>
-                <p class="mb-0 mt-1">Titolo album</p>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-              <div class="big-playlist-single-container">
-                <a class="img-playlist-medium d-block dynamic-content text-decoration-none" href="#"><img class="img-fluid" src="https://cdn.pixabay.com/photo/2014/04/07/20/45/abstract-318919_1280.jpg"></a>
-                <p class="mb-0 mt-1">Titolo album</p>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-              <div class="big-playlist-single-container">
-                <a class="img-playlist-medium d-block dynamic-content text-decoration-none" href="#"><img class="img-fluid" src="https://cdn.pixabay.com/photo/2014/04/07/20/45/abstract-318919_1280.jpg"></a>
-                <p class="mb-0 mt-1">Titolo album</p>
-              </div>
-            </div>
+          <div class="row" id="discography">
+
           </div>
 
           <div id="row-correlated-title" class="row">
@@ -331,55 +307,14 @@
               <a href="#" class="text-white text-decoration-none">Mostra tutto</a>
             </div>
           </div>
-          <div id="row-correlated-cards" class="row">
-            <div class="col-3">
-            <div class="correlated-artist-img">
-              <img src="https://cdn.pixabay.com/photo/2014/04/07/20/45/abstract-318919_1280.jpg" class="img-fluid rounded-circle"/>
+          <div id="relatedArtists" class="row">
 
-            </div>
-          <div class="artist-name p-3">
-            <p class="mb-0">Jim Morrison</p>
-            <p class="mt-0 text-secondary">Artista</p>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="correlated-artist-img">
-              <img src="https://cdn.pixabay.com/photo/2014/04/07/20/45/abstract-318919_1280.jpg" class="img-fluid rounded-circle"/>
-
-            </div>
-          <div class="artist-name p-3">
-            <p class="mb-0">Jim Morrison</p>
-            <p class="mt-0 text-secondary">Artista</p>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="correlated-artist-img">
-              <img src="https://cdn.pixabay.com/photo/2014/04/07/20/45/abstract-318919_1280.jpg" class="img-fluid rounded-circle"/>
-
-            </div>
-          <div class="artist-name p-3">
-            <p class="mb-0">Jim Morrison</p>
-            <p class="mt-0 text-secondary">Artista</p>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="correlated-artist-img">
-              <img src="https://cdn.pixabay.com/photo/2014/04/07/20/45/abstract-318919_1280.jpg" class="img-fluid rounded-circle"/>
-
-            </div>
-          <div class="artist-name p-3">
-            <p class="mb-0">Jim Morrison</p>
-            <p class="mt-0 text-secondary">Artista</p>
-            </div>
-          </div>
           </div>
           <div id="row-info-artist row mb-5">
             <div class="col-12 d-flex justify-content-between mt-4 mb-3 align-items-center">
               <p class="h3 text-white">Informazioni</p>
             </div>
-            <div class="col-12 bg-info-artist d-flex flex-column justify-content-end p-4 mb-5">
-              <p>1000 ascoltatori mensili</p>
-              <p>dettagli dettagli dettagli dettagli dettagli dettagli dettagli dettagli dettagli </p>
+            <div class="col-12 bg-info-artist d-flex flex-column justify-content-end p-4 mb-5" id="artistInfoDiv">
             </div>
           </div>
 
