@@ -10,6 +10,24 @@ Questo progetto è un clone di Spotify, realizzato per emulare l'esperienza uten
 git clone https://github.com/TunaSandwichhh/Buildweek-2-G6.git
 ```
 
+### 2. Installazione dependencies
+
+Dopo aver clonato il progetto, naviga nella cartella del progetto e installa le dipendenze usando npm:
+
+```bash
+npm install
+```
+
+### 3. Compilazione del Progetto
+
+Per compilare il progetto TypeScript in JavaScript, esegui il seguente comando:
+
+```bash
+npm run build
+```
+
+Il risultati della compilazione si troverà nella cartella /dist del progetto
+
 ## Descrizione HTML
 
 ### - index.html
