@@ -26,7 +26,7 @@ Per compilare il progetto TypeScript in JavaScript, esegui il seguente comando:
 npm run build
 ```
 
-Il risultati della compilazione si troverà nella cartella /dist del progetto
+Il risultato della compilazione si troverà nella cartella /dist del progetto
 
 ## Descrizione HTML
 
