@@ -193,5 +193,14 @@ const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
         }
     }
 });
+const searchBtn = document.getElementById("searchBtn");
+if (searchBtn) {
+    searchBtn.addEventListener("click", () => {
+        const searchInput = document.getElementById("search")
+            .value;
+        if (searchInput)
+            window.location.href = `../../searchPage.html?q=${searchInput}`;
+    });
+}
 document.addEventListener("DOMContentLoaded", handleLoad);
 export {};

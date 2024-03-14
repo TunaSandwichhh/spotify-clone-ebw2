@@ -293,4 +293,15 @@ const handleLoad = async () => {
   }
 };
 
+const searchBtn = document.getElementById("searchBtn") as HTMLElement | null;
+
+if (searchBtn) {
+  searchBtn.addEventListener("click", () => {
+    const searchInput = (document.getElementById("search") as HTMLInputElement)
+      .value;
+    if (searchInput)
+      window.location.href = `../../searchPage.html?q=${searchInput}`;
+  });
+}
+
 document.addEventListener("DOMContentLoaded", handleLoad);
