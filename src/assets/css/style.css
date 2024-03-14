@@ -90,3 +90,29 @@ a.img-side-single-playlist.dynamic-content, a.img-preview-player {
     width: 50px;
     height: 50px;
 }
+
+#artistHero {
+    background-image: url("https://cdn.pixabay.com/photo/2014/04/07/20/45/abstract-318919_1280.jpg");
+    background-size: cover;
+    background-repeat: repeat;
+    min-height: 300px;
+}
+
+.greytext {
+    color: grey !important;
+}
+
+input::placeholder {
+    opacity: 0.3 !important;
+}
+
+input:focus {
+    outline: none;
+  }
+
+.bg-info-artist {
+    background-image: url("https://cdn.pixabay.com/photo/2014/04/07/20/45/abstract-318919_1280.jpg");
+    background-size: cover;
+    background-repeat: repeat;
+    min-height: 300px;
+}
