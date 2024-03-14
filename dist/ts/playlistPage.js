@@ -99,12 +99,14 @@ const renderPlaylistDesc = (playlist) => {
     const imageLink = document.getElementById("img-playlist-hero");
     const playlistName = document.getElementById("playlistName");
     const playlistDesc = document.getElementById("playlistDesc");
-    if (imageLink && playlistName && playlistDesc) {
+    const totalTracks = document.getElementById("totalTracks");
+    if (imageLink && playlistName && playlistDesc && totalTracks) {
         imageLink.innerHTML = `
       <img src="${playlist.images[0].url}" class="img-fluid"/>
     `;
         playlistName.innerText = playlist.name;
         playlistDesc.innerHTML = playlist.description;
+        totalTracks.innerText = `${playlist.tracks.items.length} brani`;
     }
 };
 const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {

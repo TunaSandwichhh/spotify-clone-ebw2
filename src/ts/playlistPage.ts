@@ -150,12 +150,17 @@ const renderPlaylistDesc = (playlist: Playlist) => {
     "playlistDesc"
   ) as HTMLElement | null;
 
-  if (imageLink && playlistName && playlistDesc) {
+  const totalTracks = document.getElementById(
+    "totalTracks"
+  ) as HTMLElement | null;
+
+  if (imageLink && playlistName && playlistDesc && totalTracks) {
     imageLink.innerHTML = `
       <img src="${playlist.images[0].url}" class="img-fluid"/>
     `;
     playlistName.innerText = playlist.name;
     playlistDesc.innerHTML = playlist.description;
+    totalTracks.innerText = `${playlist.tracks.items.length} brani`;
   }
 };
 
