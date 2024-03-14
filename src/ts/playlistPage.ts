@@ -7,7 +7,7 @@ const playlistId = urlParams.get("id");
 const options = {
   method: "GET",
   headers: {
-    "X-RapidAPI-Key": "1c97dd9171mshce60f6ca494e49ep1675cbjsn61e55e9dd7f6",
+    "X-RapidAPI-Key": "3332715f74msh602a78a6b6a8068p1c70cbjsnf18409ce7070",
     "X-RapidAPI-Host": "spotify81.p.rapidapi.com",
   },
 };
@@ -45,7 +45,7 @@ const getPlaylist = async (id: string): Promise<Playlist | null> => {
   }
 };
 
-export const formatMilliseconds = (milliseconds: number): string => {
+const formatMilliseconds = (milliseconds: number): string => {
   const totalSeconds = Math.floor(milliseconds / 1000);
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;

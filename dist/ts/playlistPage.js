@@ -12,7 +12,7 @@ const playlistId = urlParams.get("id");
 const options = {
     method: "GET",
     headers: {
-        "X-RapidAPI-Key": "1c97dd9171mshce60f6ca494e49ep1675cbjsn61e55e9dd7f6",
+        "X-RapidAPI-Key": "3332715f74msh602a78a6b6a8068p1c70cbjsnf18409ce7070",
         "X-RapidAPI-Host": "spotify81.p.rapidapi.com",
     },
 };
@@ -41,7 +41,7 @@ const getPlaylist = (id) => __awaiter(void 0, void 0, void 0, function* () {
         return null;
     }
 });
-export const formatMilliseconds = (milliseconds) => {
+const formatMilliseconds = (milliseconds) => {
     const totalSeconds = Math.floor(milliseconds / 1000);
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
@@ -121,3 +121,4 @@ const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 document.addEventListener("DOMContentLoaded", handleLoad);
+export {};

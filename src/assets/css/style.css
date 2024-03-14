@@ -92,7 +92,7 @@ a.img-side-single-playlist.dynamic-content, a.img-preview-player {
 }
 
 #artistHero {
-    background-image: url("https://cdn.pixabay.com/photo/2014/04/07/20/45/abstract-318919_1280.jpg");
+    background-image: url("");
     background-size: cover;
     background-repeat: repeat;
     min-height: 300px;
@@ -111,7 +111,7 @@ input:focus {
   }
 
 .bg-info-artist {
-    background-image: url("https://cdn.pixabay.com/photo/2014/04/07/20/45/abstract-318919_1280.jpg");
+    background-image: url("");
     background-size: cover;
     background-repeat: repeat;
     min-height: 300px;

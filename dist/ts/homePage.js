@@ -11,7 +11,7 @@ const url = "https://spotify81.p.rapidapi.com/user_profile?id=nocopyrightsounds&
 const options = {
     method: "GET",
     headers: {
-        "X-RapidAPI-Key": "1c97dd9171mshce60f6ca494e49ep1675cbjsn61e55e9dd7f6",
+        "X-RapidAPI-Key": "3332715f74msh602a78a6b6a8068p1c70cbjsnf18409ce7070",
         "X-RapidAPI-Host": "spotify81.p.rapidapi.com",
     },
 };
