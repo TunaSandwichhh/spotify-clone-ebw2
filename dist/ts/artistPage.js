@@ -146,7 +146,7 @@ const renderRelatedArtists = (artistOvw, index) => {
         <img src="${artistOvw.relatedContent.relatedArtists.items[index].visuals.avatarImage.sources[0].url}" class="img-fluid rounded-circle"/>
       </div>
       <div class="artist-name p-3">
-        <a href="../../artists.html${artistOvw.relatedContent.relatedArtists.items[index].id}" class="text-decoration-none text-light">
+        <a href="../../artists.html?id=${artistOvw.relatedContent.relatedArtists.items[index].id}" class="text-decoration-none text-light">
           <p class="mb-0">${artistOvw.relatedContent.relatedArtists.items[index].profile.name}</p>
         </a>
         <p class="mt-0 text-secondary">Artista</p>
