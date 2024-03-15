@@ -124,7 +124,7 @@ const renderPopularTracks = (artistOvw: ArtistOverview, index: number) => {
 
     trackDiv.innerHTML = `
     <div class="col">${index + 1}</div>
-    <div class="col-5 d-flex">
+    <div class="col-10 d-flex">
       <div>
         <img id="trackImg-${index + 1}"
           src="${

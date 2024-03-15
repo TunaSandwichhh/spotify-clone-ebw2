@@ -76,7 +76,7 @@ const renderPopularTracks = (artistOvw, index) => {
             .pop()}" class="text-decoration-none text-secondary">${artist.profile.name}</a>`);
         trackDiv.innerHTML = `
     <div class="col">${index + 1}</div>
-    <div class="col-5 d-flex">
+    <div class="col-10 d-flex">
       <div>
         <img id="trackImg-${index + 1}"
           src="${artistOvw.discography.topTracks.items[index].track.album.coverArt
