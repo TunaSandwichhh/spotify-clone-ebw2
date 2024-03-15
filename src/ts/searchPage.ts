@@ -156,6 +156,13 @@ const renderArtistResults = (result: SearchResult, index: number) => {
   }
 };
 
+const removeSkeletonClass = () => {
+  const skeletonElements = document.querySelectorAll(".skeleton");
+  skeletonElements.forEach((element) => {
+    element.classList.remove("skeleton");
+  });
+};
+
 const handleLoad = async () => {
   if (searchQuery) {
     const searchResult = await getSearchResult(searchQuery);
@@ -174,6 +181,8 @@ const handleLoad = async () => {
           renderArtistResults(searchResult, index);
         }
       });
+
+      removeSkeletonClass();
     }
   }
 };

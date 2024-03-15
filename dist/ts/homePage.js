@@ -45,6 +45,12 @@ const getPlaylist = () => __awaiter(void 0, void 0, void 0, function* () {
         return [];
     }
 });
+const removeSkeletonClass = () => {
+    const skeletonElements = document.querySelectorAll(".skeleton");
+    skeletonElements.forEach((element) => {
+        element.classList.remove("skeleton");
+    });
+};
 const renderPlaylistTitle = (playlist) => {
     const playBtn = document.getElementById("playBtn");
     playBtn === null || playBtn === void 0 ? void 0 : playBtn.addEventListener("click", () => {
@@ -97,6 +103,7 @@ const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
             renderPlaylist(playlist, "playlist3");
         }
     });
+    removeSkeletonClass();
 });
 const searchBtn = document.getElementById("searchBtn");
 if (searchBtn) {

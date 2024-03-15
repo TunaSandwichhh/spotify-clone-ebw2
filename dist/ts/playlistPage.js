@@ -109,6 +109,12 @@ const renderPlaylistDesc = (playlist) => {
         totalTracks.innerText = `${playlist.tracks.items.length} brani`;
     }
 };
+const removeSkeletonClass = () => {
+    const skeletonElements = document.querySelectorAll(".skeleton");
+    skeletonElements.forEach((element) => {
+        element.classList.remove("skeleton");
+    });
+};
 const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
     if (playlistId) {
         const tracks = yield getPlaylistTracks(playlistId);
@@ -118,6 +124,7 @@ const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
         tracks.forEach((track, index) => {
             renderPlaylistTrack(track, index);
         });
+        removeSkeletonClass();
     }
 });
 const searchBtn = document.getElementById("searchBtn");

@@ -131,3 +131,35 @@ input:focus {
     background-repeat: repeat;
     min-height: 300px;
 }
+
+
+.skeleton {
+    background: #7a7a7a;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .skeleton::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -150%;
+    top: 0;
+    height: 100%;
+    width: 150%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: load 1.5s infinite;
+  }
+  
+  @keyframes load {
+    0% {
+      left: -150%;
+    }
+    50% {
+      left: 100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }

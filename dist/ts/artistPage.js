@@ -165,6 +165,12 @@ const renderArtistInfo = (artistOvw) => {
     `;
     }
 };
+const removeSkeletonClass = () => {
+    const skeletonElements = document.querySelectorAll(".skeleton");
+    skeletonElements.forEach((element) => {
+        element.classList.remove("skeleton");
+    });
+};
 const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
     if (artistId) {
         console.log(artistId);
@@ -190,6 +196,7 @@ const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
                 }
             });
             renderArtistInfo(artistOvw);
+            removeSkeletonClass();
         }
     }
 });

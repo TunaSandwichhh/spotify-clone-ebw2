@@ -114,6 +114,12 @@ const renderArtistResults = (result, index) => {
         artistResultsDiv.appendChild(artistDiv);
     }
 };
+const removeSkeletonClass = () => {
+    const skeletonElements = document.querySelectorAll(".skeleton");
+    skeletonElements.forEach((element) => {
+        element.classList.remove("skeleton");
+    });
+};
 const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
     if (searchQuery) {
         const searchResult = yield getSearchResult(searchQuery);
@@ -133,6 +139,7 @@ const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
                     renderArtistResults(searchResult, index);
                 }
             });
+            removeSkeletonClass();
         }
     }
 });

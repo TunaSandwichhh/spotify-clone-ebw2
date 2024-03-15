@@ -49,6 +49,13 @@ const getPlaylist = async (): Promise<Playlist[]> => {
   }
 };
 
+const removeSkeletonClass = () => {
+  const skeletonElements = document.querySelectorAll(".skeleton");
+  skeletonElements.forEach((element) => {
+    element.classList.remove("skeleton");
+  });
+};
+
 const renderPlaylistTitle = (playlist: Playlist) => {
   const playBtn = document.getElementById(
     "playBtn"
@@ -121,6 +128,8 @@ const handleLoad = async () => {
       renderPlaylist(playlist, "playlist3");
     }
   });
+
+  removeSkeletonClass();
 };
 
 const searchBtn = document.getElementById("searchBtn") as HTMLElement | null;

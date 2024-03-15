@@ -165,6 +165,13 @@ const renderPlaylistDesc = (playlist: Playlist) => {
   }
 };
 
+const removeSkeletonClass = () => {
+  const skeletonElements = document.querySelectorAll(".skeleton");
+  skeletonElements.forEach((element) => {
+    element.classList.remove("skeleton");
+  });
+};
+
 const handleLoad = async () => {
   if (playlistId) {
     const tracks = await getPlaylistTracks(playlistId);
@@ -175,6 +182,8 @@ const handleLoad = async () => {
     tracks.forEach((track, index) => {
       renderPlaylistTrack(track, index);
     });
+
+    removeSkeletonClass();
   }
 };
 

@@ -158,6 +158,13 @@ const renderAlbumDesc = (album: Album) => {
   }
 };
 
+const removeSkeletonClass = () => {
+  const skeletonElements = document.querySelectorAll(".skeleton");
+  skeletonElements.forEach((element) => {
+    element.classList.remove("skeleton");
+  });
+};
+
 /**
  * Callback per gestire l'evento di load della pagina
  */
@@ -170,6 +177,8 @@ const handleLoad = async () => {
     album?.tracks.items.forEach((track, index) => {
       renderAlbumTrack(track, album, index);
     });
+
+    removeSkeletonClass();
   }
 };
 

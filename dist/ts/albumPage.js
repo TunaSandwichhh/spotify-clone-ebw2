@@ -103,6 +103,12 @@ const renderAlbumDesc = (album) => {
     `;
     }
 };
+const removeSkeletonClass = () => {
+    const skeletonElements = document.querySelectorAll(".skeleton");
+    skeletonElements.forEach((element) => {
+        element.classList.remove("skeleton");
+    });
+};
 const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
     if (albumId) {
         const album = yield getAlbum(albumId);
@@ -111,6 +117,7 @@ const handleLoad = () => __awaiter(void 0, void 0, void 0, function* () {
         album === null || album === void 0 ? void 0 : album.tracks.items.forEach((track, index) => {
             renderAlbumTrack(track, album, index);
         });
+        removeSkeletonClass();
     }
 });
 const searchBtn = document.getElementById("searchBtn");
