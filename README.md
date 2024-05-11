@@ -1,4 +1,4 @@
-# Buildweek-2-G6
+# Spotify Clone
 
 Questo progetto è un clone di Spotify, realizzato per emulare l'esperienza utente dell'applicazione originale Spotify. Offre la possibilità di esplorare diverse pagine, tra cui la homepage, la ricerca di brani e artisti, nonché la gestione e l'ascolto di album e playlist.
 
